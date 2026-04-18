@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Menu, X, Leaf, Phone } from 'lucide-react'
+import { Menu, X, Phone } from 'lucide-react'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -49,7 +49,7 @@ export default function Header() {
       >
         <div className="max-w-[430px] mx-auto flex items-center justify-between px-5 py-4">
           <div className="flex items-center gap-2">
-            <Leaf className="w-5 h-5 text-teal" />
+            <img src="/images/Logo.png" alt="ВЫДОХ" className="w-8 h-auto" />
             <span className="font-guardian text-xl text-dark tracking-wide">ВЫДОХ</span>
           </div>
           <button
@@ -62,14 +62,22 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Full-screen menu overlay */}
+      {/* Overlay background when menu is open */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col animate-fade-in-up">
-          {/* Top bar */}
-          <div className="bg-cream px-5 pt-4 pb-4">
+        <div 
+          className="fixed inset-0 z-40 bg-black/50 animate-fade-in"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+
+      {/* Half-screen menu overlay from bottom */}
+      {menuOpen && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 flex flex-col animate-slide-up max-h-[50vh]">
+          {/* Top bar with close button */}
+          <div className="bg-cream px-5 pt-4 pb-4 border-t border-b border-stone/10">
             <div className="max-w-[430px] mx-auto flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Leaf className="w-5 h-5 text-teal" />
+                <img src="/images/Logo.png" alt="ВЫДОХ" className="w-8 h-auto" />
                 <span className="font-guardian text-xl text-dark tracking-wide">ВЫДОХ</span>
               </div>
               <button
@@ -82,14 +90,14 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Menu items */}
-          <div className="flex-1 bg-cream px-5 pt-8 pb-8">
-            <div className="max-w-[430px] mx-auto flex flex-col gap-8">
+          {/* Menu items - scrollable if needed */}
+          <div className="flex-1 bg-cream px-5 pt-6 pb-6 overflow-y-auto">
+            <div className="max-w-[430px] mx-auto flex flex-col gap-6">
               {menuItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className="text-left font-guardian text-[26px] text-dark hover:text-teal transition-colors"
+                  className="text-left font-guardian text-[24px] text-dark hover:text-teal transition-colors"
                 >
                   {item.label}
                 </button>
@@ -98,21 +106,21 @@ export default function Header() {
           </div>
 
           {/* Bottom brown panel with rounded top */}
-          <div className="bg-brown relative">
+          <div className="bg-brown relative flex-shrink-0">
             {/* Rounded top arc */}
             <div 
-              className="absolute -top-10 left-0 right-0 h-10 bg-brown"
+              className="absolute -top-8 left-0 right-0 h-8 bg-brown"
               style={{
                 borderTopLeftRadius: '50% 100%',
                 borderTopRightRadius: '50% 100%',
               }}
             />
             
-            <div className="relative max-w-[430px] mx-auto px-5 pt-8 pb-8 flex flex-col items-center gap-5">
+            <div className="relative max-w-[430px] mx-auto px-5 pt-6 pb-6 flex flex-col items-center gap-4">
               {/* CTA Button */}
               <button 
                 onClick={() => scrollTo('about')}
-                className="w-full max-w-[320px] bg-cream text-dark font-guardian text-lg py-4 rounded-card hover:bg-white transition-colors duration-300"
+                className="w-full max-w-[320px] bg-cream text-dark font-guardian text-lg py-3.5 rounded-card hover:bg-white transition-colors duration-300"
               >
                 Посадить первый цветок
               </button>

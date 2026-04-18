@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="max-w-[430px] mx-auto px-5 pt-10 pb-6">
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-6">
-          <Leaf className="w-5 h-5 text-sage" />
+          <img src="/images/Logo.png" alt="ВЫДОХ" className="w-10 h-auto" />
           <span className="font-guardian text-2xl text-white tracking-wide">ВЫДОХ</span>
         </div>
 
