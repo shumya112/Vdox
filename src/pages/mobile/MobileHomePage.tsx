@@ -228,7 +228,10 @@ export const MobileHomePage = () => {
           }}>
             {/* CTA Button */}
             <button 
-              onClick={() => scrollTo('about')}
+              onClick={() => {
+                window.location.hash = 'first-flower';
+                setMenuOpen(false);
+              }}
               style={{
                 position: 'relative',
                 top: '-25px',

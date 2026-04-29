@@ -173,7 +173,7 @@ export const DesktopHomePage = () => {
           </nav>
 
           <a 
-            href="#symptoms" 
+            href="#first-flower" 
             style={{
               textAlign: 'right',
               width: '198px',
@@ -192,6 +192,7 @@ export const DesktopHomePage = () => {
               right: 0,
               top: 0,
               transform: 'none',
+              cursor: 'pointer',
             }}
           >
             посадить первый цветок
