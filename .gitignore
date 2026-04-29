@@ -1,16 +1,1 @@
-# Logs
-*.log
-npm-debug.log*
-
-# Зависимости и сборка
-node_modules/
-dist/
-dist-ssr/
-*.local
-
-# IDE
-.vscode/*
-!.vscode/extensions.json
-.idea/
-*.suo
-*.sln
+Nothing should be ignored based on the provided file changes. The only modified file is a source code file (.tsx), which should not be added to .gitignore.
