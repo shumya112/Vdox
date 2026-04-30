@@ -422,7 +422,7 @@ export const FirstFlowerPage: React.FC = () => {
                 height: '24px',
                 left: '521px',
                 top: item.top,
-                fontFamily: 'Evolventa, sans-serif',
+                fontFamily: "'Geometria', sans-serif",
                 fontStyle: 'normal',
                 fontWeight: 300,
                 fontSize: '24px',
