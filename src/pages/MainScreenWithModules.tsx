@@ -42,12 +42,12 @@ export const MainScreenWithModules = () => {
       overflow: 'hidden',
     }}>
       <style>{`
-        /* ===== FONTS ===== */
         @font-face {
           font-family: 'mr_GuardianCircusG';
           src: url('/fonts/mr_GuardianCircusG.woff2') format('woff2'),
                url('/fonts/mr_GuardianCircusG.woff') format('woff'),
                url('/fonts/mr_GuardianCircusG.ttf') format('truetype');
+               url('/fonts/mr_GuardianCircusG.otf') format('opentype');
           font-weight: normal;
           font-style: normal;
           font-display: swap;
@@ -412,9 +412,14 @@ export const MainScreenWithModules = () => {
             <h1 className="hero-title">
               Твой первый<br />цветок ждет тебя
             </h1>
-            {/* Замените на реальное изображение: /hero-soil.png */}
+            
+            {/* ИСПРАВЛЕНИЕ: Используем ваше изображение и убрали сломанный SVG код */}
             <div className="hero-bg-decor">
-              <img src="/Цвитение.png" alt="Цветение" />
+              <img 
+                src="/Цвитение.png" 
+                alt="Цветение" 
+                style={{ width: '100%', height: 'auto', display: 'block' }} 
+              />
             </div>
           </div>
         </section>
