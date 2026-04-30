@@ -320,10 +320,10 @@ export const FirstFlowerPage: React.FC = () => {
 
       {/* ЦВЕТЫ */}
       <div style={styles.flowersContainer}>
-        <img
-          src="https://images.unsplash.com/photo-1490750967868-88aa0a0da4cf?w=1600&auto=format&fit=crop&q=80"
-          alt="Цветочная композиция"
-          style={styles.flowersImage}
+       <img
+        src="/Цветочная композиция.png"
+        alt="Цветочная композиция"
+        style={styles.flowersImage}
         />
         <div style={styles.flowersGradient} />
       </div>
