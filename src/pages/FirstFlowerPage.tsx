@@ -359,7 +359,7 @@ export const FirstFlowerPage: React.FC = () => {
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'cover',
+              objectFit: 'contain',
               objectPosition: 'center bottom',
               display: 'block',
             }} 
@@ -405,9 +405,9 @@ export const FirstFlowerPage: React.FC = () => {
             height: '157px',
             left: '879px',
             top: '142px',
-            backgroundImage: 'url("/Цветочная композиция.png")',
+            backgroundImage: 'url("/fflowers.png")',
             backgroundSize: 'cover',
-            backgroundPosition: 'bottom center',
+            backgroundPosition: 'center',
             borderRadius: '15px'
           }} />
 
