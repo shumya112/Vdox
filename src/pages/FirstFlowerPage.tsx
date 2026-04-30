@@ -17,10 +17,6 @@ export const FirstFlowerPage: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const linkColor = '#111';
-  const pillBg = '#FFF3E6';
-  const pillBorder = 'none';
-
   const footerNavLinks = [
     { text: 'О курсе', top: '142px', href: '#about' },
     { text: 'Симптомы', top: '188px', href: '#symptoms' },
@@ -32,12 +28,14 @@ export const FirstFlowerPage: React.FC = () => {
     <div style={{ 
       minHeight: '100vh',
       width: '100%',
-      fontFamily: 'Inter, sans-serif', 
+      fontFamily: 'Evolventa, sans-serif', 
       color: '#111',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       position: 'relative',
+      backgroundColor: '#FFF8F0',
+      overflowX: 'hidden',
     }}>
       <style>{`
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -46,6 +44,7 @@ export const FirstFlowerPage: React.FC = () => {
           width: 100%;
           margin: 0;
           padding: 0;
+          overflow-x: hidden;
         }
         body { margin: 0; }
         
@@ -65,14 +64,17 @@ export const FirstFlowerPage: React.FC = () => {
         
         .section-content {
           position: relative;
-          width: 1734px;
+          width: 100%;
+          max-width: 1734px;
           height: 100%;
           margin: 0 auto;
         }
         
         .page-container { 
-          width: min(1200px, 100%); 
+          width: 100%; 
+          max-width: 1200px; 
           margin: 0 auto; 
+          padding: 0 20px;
         }
         
         .nav-pill { 
@@ -103,7 +105,6 @@ export const FirstFlowerPage: React.FC = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: '20px 0',
-          gap: '190px',
           position: 'fixed',
           width: '100%',
           maxWidth: '1409px',
@@ -148,7 +149,7 @@ export const FirstFlowerPage: React.FC = () => {
 
           <nav style={{ 
             display: 'flex', 
-            gap: 0, 
+            gap: 8, 
             flexWrap: 'wrap', 
             justifyContent: 'center', 
             flex: 1,
@@ -160,9 +161,10 @@ export const FirstFlowerPage: React.FC = () => {
                 href={item.href}
                 className="nav-pill"
                 style={{
-                  color: linkColor,
-                  background: pillBg,
-                  border: pillBorder,
+                  color: '#111',
+                  background: '#FFF3E6',
+                  border: 'none',
+                  fontFamily: 'Evolventa, sans-serif',
                 }}
               >
                 {item.label}
@@ -176,7 +178,7 @@ export const FirstFlowerPage: React.FC = () => {
               textAlign: 'right',
               width: '198px',
               height: '21px',
-              fontFamily: "'Evolventa', sans-serif",
+              fontFamily: 'Evolventa, sans-serif',
               fontStyle: 'normal',
               fontWeight: 400,
               fontSize: '16px',
@@ -199,84 +201,171 @@ export const FirstFlowerPage: React.FC = () => {
       </header>
 
       {/* ===== HERO SECTION ===== */}
-      <div className="section-wrapper" style={{ 
-        paddingTop: '140px',
-        paddingBottom: '40px',
+      <section className="section-wrapper" style={{ 
+        paddingTop: '180px',
+        paddingBottom: '0',
+        minHeight: '985px',
+        background: 'linear-gradient(180deg, #FFF8F0 0%, #FFEEDD 60%, #FFEEDD 100%)',
+        position: 'relative',
+        width: '100%',
       }}>
-        <div className="section-content">
-          <h1 style={{
-            position: 'absolute',
-            width: '475px',
-            height: '131px',
-            left: '164px',
-            top: '257px',
-            fontFamily: "'mr_GuardianCircusG', sans-serif",
-            fontStyle: 'normal',
-            fontWeight: 400,
-            fontSize: '78px',
-            lineHeight: '63px',
-            color: '#3D1903'
-          }}>
-            Собери свой сад из новых привычек
-          </h1>
-           
+        <div style={{ 
+          position: 'relative',
+          width: '100%',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 20px',
+          zIndex: 1,
+        }}>
+          {/* Three statements at top */}
           <div style={{
-            position: 'absolute',
-            width: '419px',
-            height: '72px',
-            left: '164px',
-            top: '397px',
-            fontFamily: "'Evolventa', sans-serif",
-            fontStyle: 'normal',
-            fontSize: '24px',
-            lineHeight: '24px',
-            color: '#3D1903',
-            margin: 0,
-          }}>
-            <span style={{ fontWeight: 'bold' }}>6 симптомов | 6 модулей</span> <br />
-            <span style={{ fontWeight: 400 }}>
-              понятные шаги и трекеры, которые реально меняют поведение
-            </span>
-          </div>
-          
-          <button style={{
             display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '16px 24px',
-            gap: '16px',
-            position: 'absolute',
-            width: '340px',
-            height: '56px',
-            left: '164px',
-            top: '513px',
-            background: '#F4F5F0',
-            borderRadius: '38px',
-            cursor: 'pointer',
-            border: 'none'
-          }}> 
-            <span style={{
-              width: '292px',
-              height: '24px',
-              fontFamily: "'Evolventa', sans-serif",
-              fontStyle: 'normal',
-              fontWeight: 400,
+            justifyContent: 'space-between',
+            marginBottom: '60px',
+            flexWrap: 'wrap',
+            gap: '20px',
+          }}>
+            <div style={{
+              fontFamily: 'Evolventa, sans-serif',
               fontSize: '24px',
-              lineHeight: '24px',
-              color: '#111111',
-              flex: 'none',
-              order: 0,
-              flexGrow: 0,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
+              lineHeight: '32px',
+              color: '#3D1903',
+              flex: 1,
+              minWidth: '250px',
             }}>
-              Начать выращивать сад
-            </span>
-          </button>
+              Вы не «ленитесь».
+            </div>
+            <div style={{
+              fontFamily: 'Evolventa, sans-serif',
+              fontSize: '24px',
+              lineHeight: '32px',
+              color: '#3D1903',
+              flex: 1,
+              minWidth: '250px',
+              textAlign: 'center',
+            }}>
+              Вы не «слишком чувствительны»
+            </div>
+            <div style={{
+              fontFamily: 'Evolventa, sans-serif',
+              fontSize: '24px',
+              lineHeight: '32px',
+              color: '#3D1903',
+              flex: 1,
+              minWidth: '250px',
+              textAlign: 'right',
+            }}>
+              И не «слабы».
+            </div>
+          </div>
+
+          {/* Center text */}
+          <div style={{
+            textAlign: 'center',
+            marginBottom: '60px',
+            maxWidth: '700px',
+            margin: '0 auto 60px',
+          }}>
+            <p style={{
+              fontFamily: 'Evolventa, sans-serif',
+              fontSize: '28px',
+              lineHeight: '36px',
+              color: '#3D1903',
+              marginBottom: '16px',
+            }}>
+              Вы просто давно живёте с<br />
+              нарушенными границами.
+            </p>
+            <p style={{
+              fontFamily: 'Evolventa, sans-serif',
+              fontSize: '24px',
+              lineHeight: '32px',
+              color: '#3D1903',
+            }}>
+              И это всегда проявляется <strong>одинаково:</strong><br />
+              через симптомы.
+            </p>
+          </div>
+
+          {/* Main heading and button */}
+          <div style={{
+            marginBottom: '40px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '40px',
+          }}>
+            <h1 style={{
+              fontFamily: 'Evolventa, sans-serif',
+              fontSize: '42px',
+              lineHeight: '50px',
+              color: '#3D1903',
+              maxWidth: '700px',
+              flex: 1,
+              fontWeight: 400,
+            }}>
+              Пройдите тест и посмотрите,<br />
+              какой цветок у вас сейчас не растёт
+            </h1>
+            
+            <button 
+              onClick={() => console.log('Take test clicked')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '16px 32px',
+                background: '#FFFFFF',
+                border: 'none',
+                borderRadius: '50px',
+                cursor: 'pointer',
+                fontFamily: 'Evolventa, sans-serif',
+                fontSize: '20px',
+                fontWeight: 400,
+                color: '#3D1903',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 12px rgba(61, 25, 3, 0.1)',
+                flexShrink: 0,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#F5F5F5';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#FFFFFF';
+              }}
+            >
+              Пройти тест
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
         </div>
-      </div>
+
+        {/* Flowers Background - Full Width */}
+        <div style={{
+          position: 'absolute',
+          width: '100vw',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          bottom: '0',
+          height: '500px',
+          zIndex: 0,
+        }}>
+          <img 
+            src="/Цветочная композиция.png" 
+            alt="Цветочная композиция" 
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center bottom',
+              display: 'block',
+            }} 
+          />
+        </div>
+      </section>
 
       {/* ===== FOOTER ===== */}
       <section className="section-wrapper" style={{
@@ -285,6 +374,7 @@ export const FirstFlowerPage: React.FC = () => {
         boxShadow: '0px 27px 39px rgba(82, 82, 82, 0.08)',
         marginBottom: 0,
         flexShrink: 0,
+        width: '100%',
       }}>
         <div className="section-content">
           <div style={{
@@ -315,9 +405,9 @@ export const FirstFlowerPage: React.FC = () => {
             height: '157px',
             left: '879px',
             top: '142px',
-            backgroundImage: 'url("/fflowers.png")',
+            backgroundImage: 'url("/Цветочная композиция.png")',
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'bottom center',
             borderRadius: '15px'
           }} />
 
@@ -331,7 +421,7 @@ export const FirstFlowerPage: React.FC = () => {
                 height: '24px',
                 left: '521px',
                 top: item.top,
-                fontFamily: "'Geometria', sans-serif",
+                fontFamily: 'Evolventa, sans-serif',
                 fontStyle: 'normal',
                 fontWeight: 300,
                 fontSize: '24px',
