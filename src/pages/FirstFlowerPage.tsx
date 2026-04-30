@@ -151,6 +151,10 @@ const styles: Record<string, React.CSSProperties> = {
     height: '400px',
     overflow: 'hidden',
     marginBottom: '-2px',
+    backgroundImage: "url('/Цветочная композиция.png')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center bottom',
+    backgroundRepeat: 'no-repeat',
   },
   flowersGradient: {
     position: 'absolute' as const,
@@ -320,11 +324,6 @@ export const FirstFlowerPage: React.FC = () => {
 
       {/* ЦВЕТЫ */}
       <div style={styles.flowersContainer}>
-       <img
-        src="/Цветочная композиция.png"
-        alt="Цветочная композиция"
-        style={styles.flowersImage}
-        />
         <div style={styles.flowersGradient} />
       </div>
 
