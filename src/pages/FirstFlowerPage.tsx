@@ -310,7 +310,7 @@ export const FirstFlowerPage: React.FC = () => {
             </h1>
             
             <button 
-              onClick={() => console.log('Take test clicked')}
+              onClick={() => window.location.hash = '#main-modules'}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
