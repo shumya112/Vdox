@@ -148,7 +148,7 @@ const styles: Record<string, React.CSSProperties> = {
   flowersContainer: {
     position: 'relative' as const,
     width: '100%',
-    height: '400px',
+    height: '100vh',
     overflow: 'hidden',
     marginBottom: '-2px',
     backgroundImage: "url('/Цветочная композиция.png')",
