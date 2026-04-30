@@ -350,17 +350,18 @@ export const FirstFlowerPage: React.FC = () => {
           left: '50%',
           transform: 'translateX(-50%)',
           bottom: '0',
-          height: '500px',
           zIndex: 0,
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
         }}>
           <img 
             src="/Цветочная композиция.png" 
             alt="Цветочная композиция" 
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-              objectPosition: 'center bottom',
+              width: '100vw',
+              maxWidth: '100%',
+              height: 'auto',
               display: 'block',
             }} 
           />
