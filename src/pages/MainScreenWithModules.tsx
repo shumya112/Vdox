@@ -163,6 +163,20 @@ export const MainScreenWithModules = () => {
           overflow: hidden;
         }
 
+        .hero-section::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: url('/Цвитение.png');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          z-index: 0;
+        }
+
         .hero-inner {
           position: relative;
           width: min(1200px, 100%);
@@ -173,6 +187,7 @@ export const MainScreenWithModules = () => {
           flex-direction: column;
           align-items: flex-start;
           justify-content: flex-start;
+          z-index: 1;
         }
 
         .hero-title {
@@ -184,25 +199,6 @@ export const MainScreenWithModules = () => {
           z-index: 2;
           position: relative;
           max-width: 500px;
-        }
-
-        .hero-bg-decor {
-          position: absolute;
-          bottom: 0;
-          right: -5%;
-          width: 70%;
-          height: auto;
-          z-index: 1;
-          pointer-events: none;
-          display: flex;
-          align-items: flex-end;
-          justify-content: flex-end;
-        }
-
-        .hero-bg-decor img {
-          width: 100%;
-          height: auto;
-          display: block;
         }
 
         /* ===== SYMPTOMS SECTION ===== */
@@ -412,15 +408,6 @@ export const MainScreenWithModules = () => {
             <h1 className="hero-title">
               Твой первый<br />цветок ждет тебя
             </h1>
-            
-            {/* ИСПРАВЛЕНИЕ: Используем ваше изображение и убрали сломанный SVG код */}
-            <div className="hero-bg-decor">
-              <img 
-                src="/Цвитение.png" 
-                alt="Цветение" 
-                style={{ width: '100%', height: 'auto', display: 'block' }} 
-              />
-            </div>
           </div>
         </section>
 
