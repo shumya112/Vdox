@@ -7,9 +7,9 @@ const navItems = [
   { label: 'Специалисты', href: '#specialists' },
 ];
 
-export const FirstFlowerPage: React.FC = () => {
+export const TestPage: React.FC = () => {
   const [headerFixed, setHeaderFixed] = useState(false);
-
+  
   useEffect(() => {
     const handleScroll = () => setHeaderFixed(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
@@ -91,7 +91,7 @@ export const FirstFlowerPage: React.FC = () => {
           text-decoration: none; 
           background: #FFF3E6; 
           border: none; 
-          color: #111111; 
+          color: '#111111'; 
         }
         .nav-pill:hover { opacity: 0.9; }
       `}</style>
@@ -200,11 +200,11 @@ export const FirstFlowerPage: React.FC = () => {
         </div>
       </header>
 
-      {/* ===== HERO SECTION ===== */}
+      {/* ===== TEST CONTENT SECTION ===== */}
       <section className="section-wrapper" style={{ 
         paddingTop: '180px',
-        paddingBottom: '0',
-        minHeight: '985px',
+        paddingBottom: '80px',
+        minHeight: '600px',
         background: 'linear-gradient(180deg, #FFF8F0 0%, #FFEEDD 60%, #FFEEDD 100%)',
         position: 'relative',
         width: '100%',
@@ -217,154 +217,34 @@ export const FirstFlowerPage: React.FC = () => {
           padding: '0 20px',
           zIndex: 1,
         }}>
-          {/* Three statements at top */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            marginBottom: '60px',
-            flexWrap: 'wrap',
-            gap: '20px',
-          }}>
-            <div style={{
-              fontFamily: 'Evolventa, sans-serif',
-              fontSize: '24px',
-              lineHeight: '32px',
-              color: '#3D1903',
-              flex: 1,
-              minWidth: '250px',
-            }}>
-              Вы не «ленитесь».
-            </div>
-            <div style={{
-              fontFamily: 'Evolventa, sans-serif',
-              fontSize: '24px',
-              lineHeight: '32px',
-              color: '#3D1903',
-              flex: 1,
-              minWidth: '250px',
-              textAlign: 'center',
-            }}>
-              Вы не «слишком чувствительны»
-            </div>
-            <div style={{
-              fontFamily: 'Evolventa, sans-serif',
-              fontSize: '24px',
-              lineHeight: '32px',
-              color: '#3D1903',
-              flex: 1,
-              minWidth: '250px',
-              textAlign: 'right',
-            }}>
-              И не «слабы».
-            </div>
-          </div>
-
-          {/* Center text */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '60px',
+          <h1 style={{
+            fontFamily: 'Evolventa, sans-serif',
+            fontSize: '42px',
+            lineHeight: '50px',
+            color: '#3D1903',
             maxWidth: '700px',
-            margin: '0 auto 60px',
+            fontWeight: 400,
+            marginBottom: '40px',
           }}>
-            <p style={{
-              fontFamily: 'Evolventa, sans-serif',
-              fontSize: '28px',
-              lineHeight: '36px',
-              color: '#3D1903',
-              marginBottom: '16px',
-            }}>
-              Вы просто давно живёте с<br />
-              нарушенными границами.
-            </p>
+            Тест
+          </h1>
+          
+          <div style={{
+            background: '#FFFFFF',
+            borderRadius: '20px',
+            padding: '40px',
+            boxShadow: '0 4px 12px rgba(61, 25, 3, 0.1)',
+          }}>
             <p style={{
               fontFamily: 'Evolventa, sans-serif',
               fontSize: '24px',
               lineHeight: '32px',
               color: '#3D1903',
+              marginBottom: '20px',
             }}>
-              И это всегда проявляется <strong>одинаково:</strong><br />
-              через симптомы.
+              Здесь будет содержимое теста
             </p>
           </div>
-
-          {/* Main heading and button */}
-          <div style={{
-            marginBottom: '40px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '40px',
-          }}>
-            <h1 style={{
-              fontFamily: 'Evolventa, sans-serif',
-              fontSize: '42px',
-              lineHeight: '50px',
-              color: '#3D1903',
-              maxWidth: '700px',
-              flex: 1,
-              fontWeight: 400,
-            }}>
-              Пройдите тест и посмотрите,<br />
-              какой цветок у вас сейчас не растёт
-            </h1>
-            
-            <button 
-              onClick={() => window.location.hash = '#test'}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '12px',
-                padding: '16px 32px',
-                background: '#FFFFFF',
-                border: 'none',
-                borderRadius: '50px',
-                cursor: 'pointer',
-                fontFamily: 'Evolventa, sans-serif',
-                fontSize: '20px',
-                fontWeight: 400,
-                color: '#3D1903',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 4px 12px rgba(61, 25, 3, 0.1)',
-                flexShrink: 0,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#F5F5F5';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#FFFFFF';
-              }}
-            >
-              Пройти тест
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Flowers Background - Full Width */}
-        <div style={{
-          position: 'absolute',
-          width: '100vw',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          bottom: '0',
-          zIndex: 0,
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
-        }}>
-          <img 
-            src="/Цветочная композиция.png" 
-            alt="Цветочная композиция" 
-            style={{
-              width: '100vw',
-              maxWidth: '100%',
-              height: 'auto',
-              display: 'block',
-            }} 
-          />
         </div>
       </section>
 
@@ -442,4 +322,4 @@ export const FirstFlowerPage: React.FC = () => {
   );
 };
 
-export default FirstFlowerPage;
+export default TestPage;
