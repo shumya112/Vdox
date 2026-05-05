@@ -3,10 +3,11 @@ import { vydohTheme } from './theme';
 import { HomePage } from './pages/HomePage';
 import { FirstFlowerPage } from './pages/FirstFlowerPage';
 import { MainScreenWithModules } from './pages/MainScreenWithModules';
+import { TestPage } from './pages/TestPage';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'first-flower' | 'main-modules'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'first-flower' | 'main-modules' | 'test'>('home');
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -14,6 +15,8 @@ function App() {
         setCurrentPage('first-flower');
       } else if (window.location.hash === '#main-modules') {
         setCurrentPage('main-modules');
+      } else if (window.location.hash === '#test') {
+        setCurrentPage('test');
       } else {
         setCurrentPage('home');
       }
@@ -26,7 +29,7 @@ function App() {
 
   return (
     <ConfigProvider theme={vydohTheme}>
-      {currentPage === 'home' ? <HomePage /> : currentPage === 'first-flower' ? <FirstFlowerPage /> : <MainScreenWithModules />}
+      {currentPage === 'home' ? <HomePage /> : currentPage === 'first-flower' ? <FirstFlowerPage /> : currentPage === 'test' ? <TestPage /> : <MainScreenWithModules />}
     </ConfigProvider>
   );
 }
