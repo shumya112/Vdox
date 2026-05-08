@@ -22,37 +22,37 @@ const FLOWERS_CONFIG = {
   lavanda: {
     title: "ЛАВАНДА",
     backgroundImage: "/Frame 274 лаванда.png",
-    moduleLink: "#module-lavanda"
+    moduleLink: "#main-modules"
   },
   iris: {
     title: "ИРИС",
     backgroundImage: "/Frame 274 ирис.png",
-    moduleLink: "#module-iris"
+    moduleLink: "#main-modules"
   },
   rosa: {
     title: "РОЗА",
     backgroundImage: "/Frame 274 роза.png",
-    moduleLink: "#module-rosa"
+    moduleLink: "#main-modules"
   },
   pion: {
     title: "ПИОН",
     backgroundImage: "/Frame 274 пион.png",
-    moduleLink: "#module-pion"
+    moduleLink: "#main-modules"
   },
   podsolnuh: {
     title: "ПОДСОЛНУХ",
     backgroundImage: "/Frame 274 подсолнух.png",
-    moduleLink: "#module-podsolnuh"
+    moduleLink: "#main-modules"
   },
   orhidea: {
     title: "ОРХИДЕЯ",
     backgroundImage: "/Frame 274 орхидея.png",
-    moduleLink: "#module-orhidea"
+    moduleLink: "#main-modules"
   },
   lotos: {
     title: "ЛОТОС",
     backgroundImage: "/Frame 274 лотос.png",
-    moduleLink: "#module-lotos"
+    moduleLink: "#main-modules"
   }
 };
 
