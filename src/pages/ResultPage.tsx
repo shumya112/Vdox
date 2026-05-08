@@ -7,40 +7,8 @@ const navItems = [
   { label: 'Специалисты', href: '#specialists' },
 ];
 
-const questions = [
-  { id: 1, text: 'Я откладываю важное, потому что внутри слишком много напряжения' },
-  { id: 2, text: 'Я часто тяну до последнего, а потом делаю в стрессе' },
-  { id: 3, text: 'Я почти всегда не укладываюсь во время' },
-  { id: 4, text: 'У меня ощущение, что я живу "в догонку"' },
-  { id: 5, text: 'Я соглашаюсь, даже когда внутри не согласна' },
-  { id: 6, text: 'После общения бывает ощущение, что я была "не собой"' },
-  { id: 7, text: 'Я чувствую усталость, даже если объективно не перегружена' },
-  { id: 8, text: 'Отдых не возвращает ощущение жизни' },
-  { id: 9, text: 'Ко мне часто идут с проблемами' },
-  { id: 10, text: 'Я беру на себя чужие задачи, даже когда нет ресурса' },
-  { id: 11, text: 'Я обесцениваю свои результаты' },
-  { id: 12, text: 'Мне сложно признать, что я справилась' },
-  { id: 13, text: 'Я не всегда понимаю, чего хочу' },
-  { id: 14, text: 'Иногда кажется, что я живу не свою жизнь' },
-];
-
-const floatingLabels = [
-  { text: 'Вы не "ленитесь".', top: '253px', right: '162px', width: '208px' },
-  { text: 'Вы не "сломаны"', top: '947px', right: '410px', width: '205px' },
-  { text: 'Вы не "слишком чувствительны"', top: '1896px', right: '161px', width: '381px' },
-  { text: 'Вы не "слабы".', top: '3019px', right: '162px', width: '180px' },
-];
-
-const optionLabels = [
-  'нет, это не про меня',
-  'иногда',
-  'часто',
-  'почти всегда',
-];
-
-export const TestPage: React.FC = () => {
+export const ResultPage: React.FC = () => {
   const [headerFixed, setHeaderFixed] = useState(false);
-  const [answers, setAnswers] = useState<Record<number, number>>({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -81,10 +49,6 @@ export const TestPage: React.FC = () => {
       }
     };
   }, [mobileMenuOpen]);
-
-  const handleSelect = (questionId: number, value: number) => {
-    setAnswers(prev => ({ ...prev, [questionId]: value }));
-  };
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -154,130 +118,6 @@ export const TestPage: React.FC = () => {
         }
         .nav-pill:hover { opacity: 0.9; }
 
-        .question-card {
-          background: rgba(244, 245, 240, 1);
-          border-radius: 15px;
-          padding: 24px 28px 20px;
-          margin-bottom: 16px;
-        }
-
-        .question-number {
-          font-family: 'Evolventa', sans-serif;
-          font-weight: 400;
-          font-size: 18px;
-          line-height: 24px;
-          color: #3D1903;
-          margin-bottom: 16px;
-        }
-
-        .radio-row {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          background: #FFFFFF;
-          border-radius: 30px;
-          padding: 16px 32px;
-          margin-bottom: 12px;
-        }
-
-        .radio-option {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-          cursor: pointer;
-          position: relative;
-        }
-
-        .radio-number {
-          font-family: 'Evolventa', sans-serif;
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 18px;
-          color: #3D1903;
-          margin-bottom: 2px;
-        }
-
-        .radio-circle {
-          width: 14px;
-          height: 14px;
-          border-radius: 50%;
-          border: 1.5px solid #A0D4C7;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.2s;
-          flex-shrink: 0;
-        }
-
-        .radio-circle.selected {
-          border-color: #3D1903;
-          background: #3D1903;
-        }
-
-        .radio-circle.selected::after {
-          content: '';
-          width: 4px;
-          height: 4px;
-          border-radius: 50%;
-          background: #FFFFFF;
-        }
-
-        .labels-row {
-          display: flex;
-          align-items: baseline;
-          justify-content: space-between;
-          padding: 0 8px;
-        }
-
-        .labels-row .label-item {
-          font-family: 'Evolventa', sans-serif;
-          font-weight: 400;
-          font-size: 13px;
-          line-height: 16px;
-          color: #8B7B6B;
-          white-space: nowrap;
-          transition: color 0.2s;
-        }
-
-        .labels-row .label-item.selected {
-          color: #3D1903;
-        }
-
-        .floating-label {
-          position: absolute;
-          font-family: 'Evolventa', sans-serif;
-          font-weight: 400;
-          font-size: 24px;
-          line-height: 24px;
-          color: #3D1903;
-          white-space: nowrap;
-          pointer-events: none;
-          z-index: 2;
-        }
-
-        .result-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          height: 52px;
-          border-radius: 53px;
-          padding: 16px 32px;
-          font-family: 'Evolventa', sans-serif;
-          font-weight: 400;
-          font-size: 18px;
-          line-height: 24px;
-          background: #FFF3E6;
-          border: 1.5px solid #E8D5C4;
-          color: #3D1903;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-        .result-btn:hover {
-          background: #FFE8D0;
-          border-color: #3D1903;
-        }
-
         /* ===== MOBILE MENU ===== */
         .mobile-menu-btn {
           display: none;
@@ -336,7 +176,7 @@ export const TestPage: React.FC = () => {
 
         /* Large Desktop: 1400px+ */
         @media (min-width: 1400px) {
-          .questions-container {
+          .result-container {
             margin-left: 120px !important;
             margin-right: auto !important;
           }
@@ -344,40 +184,27 @@ export const TestPage: React.FC = () => {
 
         /* Desktop: 1200px - 1399px */
         @media (min-width: 1200px) and (max-width: 1399px) {
-          .questions-container {
+          .result-container {
             margin-left: 80px !important;
             margin-right: auto !important;
-          }
-          .floating-label {
-            font-size: 20px !important;
           }
         }
 
         /* Laptop: 992px - 1199px */
         @media (min-width: 992px) and (max-width: 1199px) {
-          .questions-container {
+          .result-container {
             margin-left: 40px !important;
             margin-right: auto !important;
             max-width: 600px !important;
-          }
-          .floating-label {
-            font-size: 18px !important;
-            right: 40px !important;
           }
         }
 
         /* Tablet: 768px - 991px */
         @media (min-width: 768px) and (max-width: 991px) {
-          .questions-container {
+          .result-container {
             margin-left: 20px !important;
             margin-right: 20px !important;
             max-width: 100% !important;
-          }
-          .floating-label {
-            display: none !important;
-          }
-          .decorative-line {
-            display: none !important;
           }
           .site-header {
             max-width: 100% !important;
@@ -401,30 +228,11 @@ export const TestPage: React.FC = () => {
 
         /* Mobile Large: 576px - 767px */
         @media (min-width: 576px) and (max-width: 767px) {
-          .questions-container {
+          .result-container {
             margin-left: 16px !important;
             margin-right: 16px !important;
             max-width: 100% !important;
             padding: 0 12px !important;
-          }
-          .question-card {
-            padding: 20px 20px 16px !important;
-          }
-          .question-number {
-            font-size: 16px !important;
-            line-height: 22px !important;
-          }
-          .radio-row {
-            padding: 12px 20px !important;
-          }
-          .labels-row .label-item {
-            font-size: 11px !important;
-          }
-          .floating-label {
-            display: none !important;
-          }
-          .decorative-line {
-            display: none !important;
           }
           .site-header {
             max-width: 100% !important;
@@ -444,11 +252,6 @@ export const TestPage: React.FC = () => {
           }
           .header-link {
             display: none !important;
-          }
-          .result-btn {
-            width: 100% !important;
-            height: 48px !important;
-            font-size: 16px !important;
           }
           .footer-section {
             height: auto !important;
@@ -486,45 +289,11 @@ export const TestPage: React.FC = () => {
 
         /* Mobile Small: < 576px */
         @media (max-width: 575px) {
-          .questions-container {
+          .result-container {
             margin-left: 8px !important;
             margin-right: 8px !important;
             max-width: 100% !important;
             padding: 0 8px !important;
-          }
-          .question-card {
-            padding: 16px 14px 14px !important;
-            margin-bottom: 12px !important;
-            border-radius: 12px !important;
-          }
-          .question-number {
-            font-size: 15px !important;
-            line-height: 20px !important;
-            margin-bottom: 12px !important;
-          }
-          .radio-row {
-            padding: 10px 12px !important;
-            border-radius: 20px !important;
-          }
-          .radio-number {
-            font-size: 12px !important;
-          }
-          .radio-circle {
-            width: 12px !important;
-            height: 12px !important;
-          }
-          .labels-row {
-            padding: 0 4px !important;
-          }
-          .labels-row .label-item {
-            font-size: 10px !important;
-            line-height: 14px !important;
-          }
-          .floating-label {
-            display: none !important;
-          }
-          .decorative-line {
-            display: none !important;
           }
           .site-header {
             max-width: 100% !important;
@@ -546,25 +315,15 @@ export const TestPage: React.FC = () => {
           .header-link {
             display: none !important;
           }
-          .logo-img {
-            width: 120px !important;
-            height: auto !important;
-          }
-          .result-btn {
-            width: 100% !important;
-            height: 44px !important;
-            font-size: 15px !important;
-            padding: 12px 24px !important;
-          }
           .footer-section {
             height: auto !important;
-            padding: 40px 16px !important;
+            padding: 40px 12px !important;
           }
           .footer-inner {
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
-            gap: 30px !important;
+            gap: 32px !important;
           }
           .footer-logo {
             position: static !important;
@@ -581,26 +340,12 @@ export const TestPage: React.FC = () => {
           .footer-nav a {
             position: static !important;
             font-size: 16px !important;
-            line-height: 20px !important;
           }
           .footer-flowers {
             position: static !important;
             width: 100% !important;
-            max-width: 320px !important;
+            max-width: 300px !important;
             height: 100px !important;
-          }
-        }
-
-        /* Extra Small: < 360px */
-        @media (max-width: 359px) {
-          .question-number {
-            font-size: 14px !important;
-          }
-          .labels-row .label-item {
-            font-size: 9px !important;
-          }
-          .radio-row {
-            padding: 8px 8px !important;
           }
         }
       `}</style>
@@ -620,7 +365,7 @@ export const TestPage: React.FC = () => {
         </button>
       </div>
 
-      {/* ===== HEADER (как в мобильном примере) ===== */}
+      {/* ===== HEADER ===== */}
       <header
         className="site-header"
         style={{
@@ -698,7 +443,7 @@ export const TestPage: React.FC = () => {
         </a>
       </header>
 
-      {/* ===== TEST CONTENT ===== */}
+      {/* ===== RESULT CONTENT ===== */}
       <section style={{
         paddingTop: '180px',
         paddingBottom: '80px',
@@ -706,41 +451,13 @@ export const TestPage: React.FC = () => {
         position: 'relative',
         background: 'rgba(243, 215, 186, 1)',
         overflow: 'hidden',
+        minHeight: '60vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        {/* Decorative line */}
-        <img
-          src="/dist/Vector 2241.png"
-          alt=""
-          className="decorative-line"
-          style={{
-            position: 'absolute',
-            width: '798.78px',
-            height: '3435.62px',
-            right: '-20px',
-            top: '-126px',
-            pointerEvents: 'none',
-            zIndex: 0,
-            objectFit: 'contain',
-          }}
-        />
-
-        {/* Floating text labels */}
-        {floatingLabels.map((label, i) => (
-          <div
-            key={i}
-            className="floating-label"
-            style={{
-              top: label.top,
-              right: label.right,
-              width: label.width,
-            }}
-          >
-            {label.text}
-          </div>
-        ))}
-
-        {/* Questions */}
-        <div className="questions-container" style={{
+        <div className="result-container" style={{
           position: 'relative',
           width: '100%',
           maxWidth: '720px',
@@ -748,52 +465,27 @@ export const TestPage: React.FC = () => {
           marginRight: 'auto',
           padding: '0 20px',
           zIndex: 1,
+          textAlign: 'center',
         }}>
-          {questions.map((q) => (
-            <div key={q.id} className="question-card">
-              <div className="question-number">
-                {q.id}. {q.text}
-              </div>
-
-              <div className="radio-row">
-                {[0, 1, 2, 3].map((val) => {
-                  const isSelected = answers[q.id] === val;
-                  return (
-                    <div
-                      key={val}
-                      className="radio-option"
-                      onClick={() => handleSelect(q.id, val)}
-                    >
-                      <div className="radio-number">{val}</div>
-                      <div className={`radio-circle ${isSelected ? 'selected' : ''}`} />
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="labels-row">
-                {optionLabels.map((label, idx) => {
-                  const isSelected = answers[q.id] === idx;
-                  return (
-                    <span key={idx} className={`label-item ${isSelected ? 'selected' : ''}`}>
-                      {label}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '32px',
-            marginBottom: '40px',
+          <h1 style={{
+            fontFamily: 'Evolventa, sans-serif',
+            fontWeight: 400,
+            fontSize: '36px',
+            lineHeight: '42px',
+            color: '#3D1903',
+            marginBottom: '24px',
           }}>
-            <button className="result-btn" onClick={() => { window.location.hash = 'result'; }}>
-              Перейти к результату
-            </button>
-          </div>
+            Result after the test
+          </h1>
+          <p style={{
+            fontFamily: 'Evolventa, sans-serif',
+            fontWeight: 400,
+            fontSize: '18px',
+            lineHeight: '24px',
+            color: '#3D1903',
+          }}>
+            Здесь будет ваш результат после прохождения теста.
+          </p>
         </div>
       </section>
 
@@ -876,5 +568,3 @@ export const TestPage: React.FC = () => {
     </div>
   );
 };
-
-export default TestPage;
