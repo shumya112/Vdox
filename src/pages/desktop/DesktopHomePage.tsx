@@ -912,7 +912,12 @@ export const DesktopHomePage = () => {
             изменится
           </span>
           
-          <button style={{
+          <button 
+          onClick={() => {
+            console.log('🔗 Переход по хэшу');
+            window.location.hash = '#first-flower';
+          }}
+          style={{
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
