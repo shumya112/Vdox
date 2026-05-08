@@ -7,16 +7,7 @@ const navItems = [
   { label: 'Специалисты', href: '#specialists' },
 ];
 
-const symptoms = [
-  { number: 'Симптом 1.', name: 'Прокрастинация', link: '#main-modules' },
-  { number: 'Симптом 2.', name: 'Хроническое опоздание', link: '#main-modules' },
-  { number: 'Симптом 1.', name: 'Социальная мимикрия', link: '#main-modules' },
-  { number: 'Симптом 1.', name: 'Эмоциональное выгорание', link: '#main-modules' },
-  { number: 'Симптом 2.', name: 'Спасательство / гиперпомощь', link: '#main-modules' },
-  { number: 'Симптом 1.', name: 'Обесценивание себя', link: '#devaluation' },
-];
-
-export const MainScreenWithModules = () => {
+export const DevaluationModulePage = () => {
   const [headerFixed, setHeaderFixed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -199,129 +190,6 @@ export const MainScreenWithModules = () => {
         }
         .nav-pill:hover { opacity: 0.9; }
 
-        /* ===== HERO SECTION ===== */
-        .hero-section {
-          width: 100%;
-          background: linear-gradient(180deg, #F5E6D3 0%, #FDF6EE 60%, #FFFFFF 100%);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .hero-section::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-image: url('/Цвитение.png');
-          background-size: cover;
-          background-position: center bottom;
-          background-repeat: no-repeat;
-          z-index: 0;
-        }
-
-        .hero-inner {
-          position: relative;
-          width: 100%;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 140px 24px 100px;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: flex-start;
-          z-index: 1;
-          min-height: 500px;
-        }
-
-        .hero-title {
-          font-family: 'mr_GuardianCircusG', cursive;
-          font-size: clamp(36px, 5vw, 52px);
-          line-height: 1.2;
-          color: #3D1903;
-          margin: 0 0 30px;
-          z-index: 2;
-          position: relative;
-          max-width: 500px;
-        }
-
-        /* ===== SYMPTOMS SECTION ===== */
-        .symptoms-section {
-          width: 100%;
-          background: #FFFFFF;
-          padding: 40px 0 60px;
-        }
-
-        .symptoms-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
-          width: 100%;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 24px;
-        }
-
-        .symptom-card {
-          background: #F7F6F1;
-          border-radius: 16px;
-          padding: 24px 24px 20px;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-          min-height: 120px;
-        }
-
-        .symptom-card:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 24px rgba(61, 25, 3, 0.08);
-        }
-
-        .symptom-label {
-          font-family: 'Evolventa', sans-serif;
-          font-weight: 300;
-          font-size: 14px;
-          line-height: 21px;
-          color: #4DB8B0;
-          margin: 0;
-        }
-
-        .symptom-title {
-          font-family: 'Evolventa', sans-serif;
-          font-weight: 400;
-          font-size: 20px;
-          line-height: 26px;
-          color: #3D1903;
-          margin: 0;
-        }
-
-        .symptom-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          height: 38px;
-          border-radius: 50px;
-          padding: 0 20px;
-          font-family: 'Evolventa', sans-serif;
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 18px;
-          text-decoration: none;
-          background: #4DB8B0;
-          border: none;
-          color: #FFFFFF;
-          cursor: pointer;
-          transition: background 0.2s ease;
-          align-self: flex-start;
-          margin-top: auto;
-        }
-
-        .symptom-btn:hover {
-          background: #3DA8A0;
-        }
-
         /* ===== FOOTER ===== */
         .footer-section {
           width: 100%;
@@ -401,7 +269,7 @@ export const MainScreenWithModules = () => {
           display: flex;
         }
 
-        /* ===== MOBILE HEADER (from MobileHomePage) ===== */
+        /* ===== MOBILE HEADER ===== */
         .mobile-header {
           display: none;
           position: fixed;
@@ -605,191 +473,78 @@ export const MainScreenWithModules = () => {
           .symptoms-grid {
             grid-template-columns: repeat(2, 1fr);
           }
-          .footer-grid {
-            grid-template-columns: 1fr 1fr;
-          }
-          .footer-image {
-            grid-column: 1 / -1;
-            min-height: 120px;
-          }
         }
 
         @media (max-width: 768px) {
-          /* Hide desktop header/footer */
           .desktop-header {
             display: none !important;
           }
-          .footer-section {
+          .desktop-footer {
             display: none !important;
           }
-
-          /* Show mobile header/footer */
           .mobile-header {
-            display: flex;
+            display: flex !important;
           }
           .mobile-footer {
-            display: block;
-          }
-
-          .hero-inner {
-            padding: 100px 16px 60px;
-            min-height: 350px;
-          }
-          .hero-title {
-            font-size: 36px;
+            display: block !important;
           }
           .symptoms-grid {
             grid-template-columns: 1fr;
-            padding: 0 16px;
           }
-          .symptoms-section {
-            padding: 30px 0 40px;
-          }
-          .section-content {
-            padding: 0 16px;
-          }
-          .page-container {
-            padding: 0 16px;
-          }
-        }
-
-        @media (min-width: 769px) {
-          .mobile-menu-overlay {
-            display: none !important;
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
           }
         }
       `}</style>
 
-      {/* ===== MOBILE HEADER ===== */}
-      <header className="mobile-header">
-        <img
-          src="/logo.png"
-          alt="ВЫДОХ"
-          className="mobile-header-logo"
-        />
-        <button
-          className="mobile-header-btn"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Menu"
-        >
-          {mobileMenuOpen ? (
-            <img
-              src="/headersymbolclose.png"
-              alt="Закрыть"
-              style={{ width: 20, height: 20 }}
-            />
-          ) : (
-            <img
-              src="/headersymbol1.png"
-              alt="Меню"
-              style={{ width: 25, height: 16 }}
-            />
-          )}
-        </button>
-      </header>
-
-      {/* ===== MOBILE FULL-SCREEN MENU OVERLAY ===== */}
-      <div className={`mobile-menu-overlay ${mobileMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-menu-top">
-          <div className="mobile-menu-items">
-            {[
-              { label: 'О курсе', id: 'about' },
-              { label: 'Симптомы', id: 'symptoms' },
-              { label: 'Как это работает', id: 'howitworks' },
-              { label: 'Специалисты', id: 'specialists' },
-            ].map((item) => (
-              <button
-                key={item.id}
-                className="mobile-menu-item"
-                onClick={() => scrollTo(item.id)}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mobile-menu-ellipse" />
-
-        <div className="mobile-menu-bottom">
-          <button
-            className="mobile-menu-cta"
-            onClick={() => {
-              window.location.hash = 'first-flower';
-              setMobileMenuOpen(false);
-            }}
-          >
-            Посадить первый цветок
-          </button>
-
-          <a href="tel:89913347070" className="mobile-menu-phone">
-            <img src="/phone.png" alt="Телефон" />
-            <span>8 (991) 334 70-70</span>
-          </a>
-        </div>
-      </div>
-
       {/* ===== DESKTOP HEADER ===== */}
-      <header
-        className="site-header desktop-header"
-        style={{
-          position: 'fixed',
-          top: headerFixed ? '0' : '20px',
-          left: 0,
-          right: 0,
-          zIndex: 100,
+      <header className={`site-header desktop-header ${headerFixed ? 'header-fixed' : ''}`} style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 20,
+        transition: 'background 0.3s ease, box-shadow 0.3s ease',
+        background: headerFixed ? '#FFFFFF' : 'transparent',
+        boxShadow: headerFixed ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
+      }}>
+        <div className="page-container" style={{
           display: 'flex',
-          justifyContent: 'center',
-          padding: '0 24px',
-          transition: 'top 0.3s ease',
-        }}
-      >
-        <div
-          style={{
-            width: '100%',
-            maxWidth: '1200px',
-            background: '#FFFFFF',
-            borderRadius: '15px',
-            padding: '16px 24px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 16,
-            boxShadow: headerFixed ? '0 2px 8px rgba(0, 0, 0, 0.1)' : 'none',
-            transition: 'box-shadow 0.3s ease',
-            position: 'relative',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
-            <img
-              src="/logo.png"
-              alt="Выдох лого"
-              style={{
-                width: 149,
-                height: 58,
-                display: 'block',
-                maxWidth: '100%',
-              }}
-            />
-          </div>
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: '80px',
+        }}>
+          <img
+            src="/flogo.png"
+            alt="fLogo"
+            style={{
+              height: '40px',
+              width: 'auto',
+              display: 'block',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              window.location.hash = '';
+              window.location.href = '/';
+            }}
+          />
 
           <nav style={{
             display: 'flex',
-            gap: 8,
+            alignItems: 'center',
+            gap: '12px',
             flexWrap: 'wrap',
-            justifyContent: 'center',
-            flex: 1,
-            margin: '0 20px',
           }}>
             {navItems.map((item) => (
               <a
                 key={item.label}
-                href={item.href}
                 className="nav-pill"
+                href={item.href}
                 style={{
-                  color: linkColor,
                   background: pillBg,
                   border: pillBorder,
+                  color: linkColor,
                 }}
               >
                 {item.label}
@@ -797,54 +552,85 @@ export const MainScreenWithModules = () => {
             ))}
           </nav>
 
-          <a
-            href="#first-flower"
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
-              textAlign: 'right',
-              fontFamily: "'Evolventa', sans-serif",
-              fontWeight: 400,
-              fontSize: '16px',
-              lineHeight: '21px',
-              textDecorationLine: 'underline',
-              color: '#111111',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
+              display: 'none',
             }}
           >
-            посадить первый цветок
-          </a>
+            <img src="/menu.svg" alt="Menu" style={{ width: '24px', height: '24px' }} />
+          </button>
         </div>
       </header>
 
-      {/* ===== MAIN CONTENT ===== */}
-      <main style={{ width: '100%', marginTop: '0' }}>
+      {/* ===== MOBILE HEADER ===== */}
+      <header className="mobile-header">
+        <img
+          src="/flogo.png"
+          alt="fLogo"
+          className="mobile-header-logo"
+        />
+        <button
+          className="mobile-header-btn"
+          onClick={() => setMobileMenuOpen(true)}
+        >
+          <img src="/menu.svg" alt="Menu" />
+        </button>
+      </header>
 
-        {/* Hero Section */}
-        <section className="hero-section" id="about">
-          <div className="hero-inner">
-            <h1 className="hero-title">
-              Твой первый<br />цветок ждет тебя
-            </h1>
-          </div>
-        </section>
-
-        {/* Symptoms Cards */}
-        <section className="symptoms-section" id="symptoms">
-          <div className="symptoms-grid">
-            {symptoms.map((s, i) => (
-              <div className="symptom-card" key={i}>
-                <p className="symptom-label">{s.number}</p>
-                <h3 className="symptom-title">{s.name}</h3>
-                <a href={s.link} className="symptom-btn" style={{ display: 'inline-flex', textDecoration: 'none' }}>Перейти к модулю</a>
-              </div>
+      {/* ===== MOBILE MENU OVERLAY ===== */}
+      <div className={`mobile-menu-overlay ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-menu-top">
+          <div className="mobile-menu-ellipse"></div>
+          <div className="mobile-menu-items">
+            {navItems.map((item) => (
+              <button
+                key={item.label}
+                className="mobile-menu-item"
+                onClick={() => {
+                  scrollTo(item.href.substring(1));
+                }}
+              >
+                {item.label}
+              </button>
             ))}
           </div>
-        </section>
+        </div>
+        <div className="mobile-menu-bottom">
+          <button className="mobile-menu-cta">Записаться на курс</button>
+          <a href="tel:+79991234567" className="mobile-menu-phone">
+            <img src="/phone.svg" alt="Phone" />
+            <span>+7 (999) 123-45-67</span>
+          </a>
+        </div>
+      </div>
+
+      {/* ===== MAIN CONTENT ===== */}
+      <main style={{ width: '100%', marginTop: '80px', paddingTop: '40px', paddingBottom: '60px' }}>
+        <div className="page-container">
+          <h1 style={{
+            fontFamily: 'mr_GuardianCircusG',
+            fontSize: 'clamp(32px, 4vw, 48px)',
+            color: '#3D1903',
+            marginBottom: '24px',
+          }}>
+            Обесценивание себя
+          </h1>
+          <p style={{
+            fontFamily: 'Evolventa',
+            fontSize: '18px',
+            lineHeight: '1.6',
+            color: '#111',
+            maxWidth: '800px',
+          }}>
+            Здесь будет контент модуля про обесценивание себя...
+          </p>
+        </div>
       </main>
 
       {/* ===== DESKTOP FOOTER ===== */}
-      <footer className="footer-section">
+      <footer className="footer-section desktop-footer">
         <div className="section-content">
           <div className="footer-grid">
             <div>
@@ -862,7 +648,14 @@ export const MainScreenWithModules = () => {
                 { text: 'Как это работает', href: '#howitworks' },
                 { text: 'Специалисты', href: '#specialists' },
               ].map((item) => (
-                <a key={item.text} href={item.href}>
+                <a
+                  key={item.text}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.hash = item.href;
+                  }}
+                >
                   {item.text}
                 </a>
               ))}
@@ -875,28 +668,36 @@ export const MainScreenWithModules = () => {
 
       {/* ===== MOBILE FOOTER ===== */}
       <footer className="mobile-footer">
-        <img src="/flogo.png" alt="ВЫДОХ" className="mobile-footer-logo" />
-
-        {[
-          { label: 'О курсе', id: 'about' },
-          { label: 'Симптомы', id: 'symptoms' },
-          { label: 'Как это работает', id: 'howitworks' },
-          { label: 'Специалисты', id: 'specialists' },
-        ].map((item) => (
-          <a
-            key={item.id}
-            href={`#${item.id}`}
-            className="mobile-footer-link"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollTo(item.id);
-            }}
-          >
-            {item.label}
-          </a>
-        ))}
-
-        <img src="/fflowers.png" alt="" className="mobile-footer-image" />
+        <img
+          src="/flogo.png"
+          alt="fLogo"
+          className="mobile-footer-logo"
+        />
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {[
+            { text: 'О курсе', href: '#about' },
+            { text: 'Симптомы', href: '#symptoms' },
+            { text: 'Как это работает', href: '#howitworks' },
+            { text: 'Специалисты', href: '#specialists' },
+          ].map((item) => (
+            <a
+              key={item.text}
+              href={item.href}
+              className="mobile-footer-link"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.hash = item.href;
+              }}
+            >
+              {item.text}
+            </a>
+          ))}
+        </nav>
+        <img
+          src="/fflowers.png"
+          alt="Flowers"
+          className="mobile-footer-image"
+        />
       </footer>
     </div>
   );

@@ -5,10 +5,11 @@ import { FirstFlowerPage } from './pages/FirstFlowerPage';
 import { MainScreenWithModules } from './pages/MainScreenWithModules';
 import { TestPage } from './pages/TestPage';
 import { ResultPage } from './pages/ResultPage';
+import { DevaluationModulePage } from './pages/DevaluationModulePage';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'first-flower' | 'main-modules' | 'test' | 'result'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'first-flower' | 'main-modules' | 'test' | 'result' | 'devaluation'>('home');
 
   useEffect(() => {
     const handleRouteChange = () => {
@@ -29,6 +30,10 @@ function App() {
       }
       if (hash === '#result') {
         setCurrentPage('result');
+        return;
+      }
+      if (hash === '#devaluation') {
+        setCurrentPage('devaluation');
         return;
       }
 
@@ -60,6 +65,7 @@ function App() {
        currentPage === 'first-flower' ? <FirstFlowerPage /> : 
        currentPage === 'test' ? <TestPage /> : 
        currentPage === 'result' ? <ResultPage /> : 
+       currentPage === 'devaluation' ? <DevaluationModulePage /> :
        <MainScreenWithModules />}
     </ConfigProvider>
   );
