@@ -120,14 +120,13 @@ export const TestPage: React.FC = () => {
   // ═══════════════════════════════════════════════════════════════
   //  ОБРАБОТЧИК: Переход к результату со случайным цветком
   // ═══════════════════════════════════════════════════════════════
-    const handleGoToResult = () => {
+  const handleGoToResult = () => {
     const flower = getRandomFlower();
     
-    // Создаём объект URL для правильной работы с хэшем и параметрами
     const url = new URL(window.location.href);
-    url.hash = '#result';                    // устанавливаем хэш
-    url.searchParams.set('type', flower);    // устанавливаем параметр
-    window.location.href = url.toString();   // переходим
+    url.hash = '#result';
+    url.searchParams.set('type', flower);
+    window.location.href = url.toString();
   };
 
   const footerNavLinks = [
@@ -141,7 +140,7 @@ export const TestPage: React.FC = () => {
     <div style={{
       minHeight: '100vh',
       width: '100%',
-      fontFamily: 'Evolventa, sans-serif',
+      fontFamily: 'Evolventa, "Segoe UI", Roboto, sans-serif',
       color: '#111',
       display: 'flex',
       flexDirection: 'column',
@@ -151,10 +150,11 @@ export const TestPage: React.FC = () => {
       overflowX: 'hidden',
     }}>
       <style>{`
+        /* 🔧 ШРИФТЫ: Локальные пути вместо внешних */
         @font-face {
           font-family: 'Evolventa';
-          src: url('https://db.onlinewebfonts.com/t/1e6b664b6d46b5f76c82d5284004fe0f.woff2') format('woff2'),
-               url('https://db.onlinewebfonts.com/t/1e6b664b6d46b5f76c82d5284004fe0f.woff') format('woff');
+          src: url('/fonts/Evolventa-Regular.woff2') format('woff2'),
+               url('/fonts/Evolventa-Regular.woff') format('woff');
           font-weight: 400;
           font-style: normal;
           font-display: swap;
@@ -533,21 +533,23 @@ export const TestPage: React.FC = () => {
         background: 'rgba(243, 215, 186, 1)',
         overflow: 'hidden',
       }}>
+        {/* 🔧 Декоративная линия — сдвинута влево + рамка для отладки */}
         <img
-          src="/dist/Vector-2241.png"
+          src="/Vector-2241.png"
           alt=""
           className="decorative-line"
           style={{
             position: 'absolute',
             width: '798.78px',
             height: '3435.62px',
-            right: '-20px',
+            left: '1100px',        // ← сдвинул влево (было ~1140px)
             top: '-126px',
             pointerEvents: 'none',
             zIndex: 0,
             objectFit: 'contain',
+            border: '1px solid #3D1903',  // ← рамка для отладки (убери потом)
           }}
-        />
+/>
 
         {floatingLabels.map((label, i) => (
           <div
@@ -611,7 +613,6 @@ export const TestPage: React.FC = () => {
             marginTop: '32px',
             marginBottom: '40px',
           }}>
-            {/* КНОПКА С НОВОЙ ЛОГИКОЙ */}
             <button className="result-btn" onClick={handleGoToResult}>
               Перейти к результату
             </button>
