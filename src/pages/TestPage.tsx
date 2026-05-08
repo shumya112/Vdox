@@ -24,6 +24,21 @@ const questions = [
   { id: 14, text: 'Иногда кажется, что я живу не свою жизнь' },
 ];
 
+// ═══════════════════════════════════════════════════════════════
+//  СПИСОК ВСЕХ ЦВЕТОВ (для случайного выбора)
+// ═══════════════════════════════════════════════════════════════
+const FLOWER_TYPES = [
+  'lavanda',
+  'iris',
+  'rosa',
+  'pion',
+  'podsolnuh',
+  'orhidea',
+  'lotos'
+] as const;
+
+type FlowerType = typeof FLOWER_TYPES[number];
+
 const floatingLabels = [
   { text: 'Вы не "ленитесь".', top: '253px', right: '162px', width: '208px' },
   { text: 'Вы не "сломаны"', top: '947px', right: '410px', width: '205px' },
@@ -37,6 +52,14 @@ const optionLabels = [
   'часто',
   'почти всегда',
 ];
+
+// ═══════════════════════════════════════════════════════════════
+//  ФУНКЦИЯ: Случайный выбор цветка
+// ═══════════════════════════════════════════════════════════════
+const getRandomFlower = (): FlowerType => {
+  const randomIndex = Math.floor(Math.random() * FLOWER_TYPES.length);
+  return FLOWER_TYPES[randomIndex];
+};
 
 export const TestPage: React.FC = () => {
   const [headerFixed, setHeaderFixed] = useState(false);
@@ -92,6 +115,19 @@ export const TestPage: React.FC = () => {
       el.scrollIntoView({ behavior: 'smooth' });
       setMobileMenuOpen(false);
     }
+  };
+
+  // ═══════════════════════════════════════════════════════════════
+  //  ОБРАБОТЧИК: Переход к результату со случайным цветком
+  // ═══════════════════════════════════════════════════════════════
+    const handleGoToResult = () => {
+    const flower = getRandomFlower();
+    
+    // Создаём объект URL для правильной работы с хэшем и параметрами
+    const url = new URL(window.location.href);
+    url.hash = '#result';                    // устанавливаем хэш
+    url.searchParams.set('type', flower);    // устанавливаем параметр
+    window.location.href = url.toString();   // переходим
   };
 
   const footerNavLinks = [
@@ -333,275 +369,70 @@ export const TestPage: React.FC = () => {
         }
 
         /* ===== RESPONSIVE BREAKPOINTS ===== */
-
-        /* Large Desktop: 1400px+ */
-        @media (min-width: 1400px) {
-          .questions-container {
-            margin-left: 120px !important;
-            margin-right: auto !important;
-          }
-        }
-
-        /* Desktop: 1200px - 1399px */
-        @media (min-width: 1200px) and (max-width: 1399px) {
-          .questions-container {
-            margin-left: 80px !important;
-            margin-right: auto !important;
-          }
-          .floating-label {
-            font-size: 20px !important;
-          }
-        }
-
-        /* Laptop: 992px - 1199px */
-        @media (min-width: 992px) and (max-width: 1199px) {
-          .questions-container {
-            margin-left: 40px !important;
-            margin-right: auto !important;
-            max-width: 600px !important;
-          }
-          .floating-label {
-            font-size: 18px !important;
-            right: 40px !important;
-          }
-        }
-
-        /* Tablet: 768px - 991px */
+        @media (min-width: 1400px) { .questions-container { margin-left: 120px !important; margin-right: auto !important; } }
+        @media (min-width: 1200px) and (max-width: 1399px) { .questions-container { margin-left: 80px !important; margin-right: auto !important; } .floating-label { font-size: 20px !important; } }
+        @media (min-width: 992px) and (max-width: 1199px) { .questions-container { margin-left: 40px !important; margin-right: auto !important; max-width: 600px !important; } .floating-label { font-size: 18px !important; right: 40px !important; } }
+        
         @media (min-width: 768px) and (max-width: 991px) {
-          .questions-container {
-            margin-left: 20px !important;
-            margin-right: 20px !important;
-            max-width: 100% !important;
-          }
-          .floating-label {
-            display: none !important;
-          }
-          .decorative-line {
-            display: none !important;
-          }
-          .site-header {
-            max-width: 100% !important;
-            border-radius: 0 !important;
-            left: 0 !important;
-            transform: none !important;
-          }
-          .header-inner {
-            padding: 0 16px !important;
-          }
-          .nav-desktop {
-            display: none !important;
-          }
-          .mobile-menu-btn {
-            display: flex !important;
-          }
-          .header-link {
-            display: none !important;
-          }
+          .questions-container { margin-left: 20px !important; margin-right: 20px !important; max-width: 100% !important; }
+          .floating-label, .decorative-line { display: none !important; }
+          .site-header { max-width: 100% !important; border-radius: 0 !important; left: 0 !important; transform: none !important; }
+          .header-inner { padding: 0 16px !important; }
+          .nav-desktop { display: none !important; }
+          .mobile-menu-btn { display: flex !important; }
+          .header-link { display: none !important; }
         }
-
-        /* Mobile Large: 576px - 767px */
+        
         @media (min-width: 576px) and (max-width: 767px) {
-          .questions-container {
-            margin-left: 16px !important;
-            margin-right: 16px !important;
-            max-width: 100% !important;
-            padding: 0 12px !important;
-          }
-          .question-card {
-            padding: 20px 20px 16px !important;
-          }
-          .question-number {
-            font-size: 16px !important;
-            line-height: 22px !important;
-          }
-          .radio-row {
-            padding: 12px 20px !important;
-          }
-          .labels-row .label-item {
-            font-size: 11px !important;
-          }
-          .floating-label {
-            display: none !important;
-          }
-          .decorative-line {
-            display: none !important;
-          }
-          .site-header {
-            max-width: 100% !important;
-            border-radius: 0 !important;
-            left: 0 !important;
-            transform: none !important;
-            height: 70px !important;
-          }
-          .header-inner {
-            padding: 0 16px !important;
-          }
-          .nav-desktop {
-            display: none !important;
-          }
-          .mobile-menu-btn {
-            display: flex !important;
-          }
-          .header-link {
-            display: none !important;
-          }
-          .result-btn {
-            width: 100% !important;
-            height: 48px !important;
-            font-size: 16px !important;
-          }
-          .footer-section {
-            height: auto !important;
-            padding: 60px 20px !important;
-          }
-          .footer-inner {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 40px !important;
-          }
-          .footer-logo {
-            position: static !important;
-            width: 150px !important;
-            height: auto !important;
-          }
-          .footer-nav {
-            position: static !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 20px !important;
-          }
-          .footer-nav a {
-            position: static !important;
-            font-size: 18px !important;
-          }
-          .footer-flowers {
-            position: static !important;
-            width: 100% !important;
-            max-width: 400px !important;
-            height: 120px !important;
-          }
+          .questions-container { margin-left: 16px !important; margin-right: 16px !important; max-width: 100% !important; padding: 0 12px !important; }
+          .question-card { padding: 20px 20px 16px !important; }
+          .question-number { font-size: 16px !important; line-height: 22px !important; }
+          .radio-row { padding: 12px 20px !important; }
+          .labels-row .label-item { font-size: 11px !important; }
+          .floating-label, .decorative-line { display: none !important; }
+          .site-header { max-width: 100% !important; border-radius: 0 !important; left: 0 !important; transform: none !important; height: 70px !important; }
+          .header-inner { padding: 0 16px !important; }
+          .nav-desktop { display: none !important; }
+          .mobile-menu-btn { display: flex !important; }
+          .header-link { display: none !important; }
+          .result-btn { width: 100% !important; height: 48px !important; font-size: 16px !important; }
+          .footer-section { height: auto !important; padding: 60px 20px !important; }
+          .footer-inner { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 40px !important; }
+          .footer-logo { position: static !important; width: 150px !important; height: auto !important; }
+          .footer-nav { position: static !important; display: flex !important; flex-direction: column !important; align-items: center !important; gap: 20px !important; }
+          .footer-nav a { position: static !important; font-size: 18px !important; }
+          .footer-flowers { position: static !important; width: 100% !important; max-width: 400px !important; height: 120px !important; }
         }
-
-        /* Mobile Small: < 576px */
+        
         @media (max-width: 575px) {
-          .questions-container {
-            margin-left: 8px !important;
-            margin-right: 8px !important;
-            max-width: 100% !important;
-            padding: 0 8px !important;
-          }
-          .question-card {
-            padding: 16px 14px 14px !important;
-            margin-bottom: 12px !important;
-            border-radius: 12px !important;
-          }
-          .question-number {
-            font-size: 15px !important;
-            line-height: 20px !important;
-            margin-bottom: 12px !important;
-          }
-          .radio-row {
-            padding: 10px 12px !important;
-            border-radius: 20px !important;
-          }
-          .radio-number {
-            font-size: 12px !important;
-          }
-          .radio-circle {
-            width: 12px !important;
-            height: 12px !important;
-          }
-          .labels-row {
-            padding: 0 4px !important;
-          }
-          .labels-row .label-item {
-            font-size: 10px !important;
-            line-height: 14px !important;
-          }
-          .floating-label {
-            display: none !important;
-          }
-          .decorative-line {
-            display: none !important;
-          }
-          .site-header {
-            max-width: 100% !important;
-            border-radius: 0 !important;
-            left: 0 !important;
-            transform: none !important;
-            height: 60px !important;
-            padding: 12px 0 !important;
-          }
-          .header-inner {
-            padding: 0 12px !important;
-          }
-          .nav-desktop {
-            display: none !important;
-          }
-          .mobile-menu-btn {
-            display: flex !important;
-          }
-          .header-link {
-            display: none !important;
-          }
-          .logo-img {
-            width: 120px !important;
-            height: auto !important;
-          }
-          .result-btn {
-            width: 100% !important;
-            height: 44px !important;
-            font-size: 15px !important;
-            padding: 12px 24px !important;
-          }
-          .footer-section {
-            height: auto !important;
-            padding: 40px 16px !important;
-          }
-          .footer-inner {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 30px !important;
-          }
-          .footer-logo {
-            position: static !important;
-            width: 120px !important;
-            height: auto !important;
-          }
-          .footer-nav {
-            position: static !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 16px !important;
-          }
-          .footer-nav a {
-            position: static !important;
-            font-size: 16px !important;
-            line-height: 20px !important;
-          }
-          .footer-flowers {
-            position: static !important;
-            width: 100% !important;
-            max-width: 320px !important;
-            height: 100px !important;
-          }
+          .questions-container { margin-left: 8px !important; margin-right: 8px !important; max-width: 100% !important; padding: 0 8px !important; }
+          .question-card { padding: 16px 14px 14px !important; margin-bottom: 12px !important; border-radius: 12px !important; }
+          .question-number { font-size: 15px !important; line-height: 20px !important; margin-bottom: 12px !important; }
+          .radio-row { padding: 10px 12px !important; border-radius: 20px !important; }
+          .radio-number { font-size: 12px !important; }
+          .radio-circle { width: 12px !important; height: 12px !important; }
+          .labels-row { padding: 0 4px !important; }
+          .labels-row .label-item { font-size: 10px !important; line-height: 14px !important; }
+          .floating-label, .decorative-line { display: none !important; }
+          .site-header { max-width: 100% !important; border-radius: 0 !important; left: 0 !important; transform: none !important; height: 60px !important; padding: 12px 0 !important; }
+          .header-inner { padding: 0 12px !important; }
+          .nav-desktop { display: none !important; }
+          .mobile-menu-btn { display: flex !important; }
+          .header-link { display: none !important; }
+          .logo-img { width: 120px !important; height: auto !important; }
+          .result-btn { width: 100% !important; height: 44px !important; font-size: 15px !important; padding: 12px 24px !important; }
+          .footer-section { height: auto !important; padding: 40px 16px !important; }
+          .footer-inner { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 30px !important; }
+          .footer-logo { position: static !important; width: 120px !important; height: auto !important; }
+          .footer-nav { position: static !important; display: flex !important; flex-direction: column !important; align-items: center !important; gap: 16px !important; }
+          .footer-nav a { position: static !important; font-size: 16px !important; line-height: 20px !important; }
+          .footer-flowers { position: static !important; width: 100% !important; max-width: 320px !important; height: 100px !important; }
         }
-
-        /* Extra Small: < 360px */
+        
         @media (max-width: 359px) {
-          .question-number {
-            font-size: 14px !important;
-          }
-          .labels-row .label-item {
-            font-size: 9px !important;
-          }
-          .radio-row {
-            padding: 8px 8px !important;
-          }
+          .question-number { font-size: 14px !important; }
+          .labels-row .label-item { font-size: 9px !important; }
+          .radio-row { padding: 8px 8px !important; }
         }
       `}</style>
 
@@ -620,7 +451,7 @@ export const TestPage: React.FC = () => {
         </button>
       </div>
 
-      {/* ===== HEADER (как в мобильном примере) ===== */}
+      {/* ===== HEADER ===== */}
       <header
         className="site-header"
         style={{
@@ -648,8 +479,6 @@ export const TestPage: React.FC = () => {
           alt="ВЫДОХ"
           style={{ height: 40, width: 'auto', display: 'block', objectFit: 'contain' }}
         />
-
-        {/* Desktop nav */}
         <nav className="nav-desktop" style={{
           display: 'flex',
           gap: 8,
@@ -664,8 +493,6 @@ export const TestPage: React.FC = () => {
             </a>
           ))}
         </nav>
-
-        {/* Mobile burger button */}
         <button
           className="mobile-menu-btn"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -677,7 +504,6 @@ export const TestPage: React.FC = () => {
             <img src="/headersymbol1.png" alt="Меню" style={{ width: 25, height: 16, objectFit: 'contain' }} />
           )}
         </button>
-
         <a
           className="header-link"
           href="#first-flower"
@@ -707,7 +533,6 @@ export const TestPage: React.FC = () => {
         background: 'rgba(243, 215, 186, 1)',
         overflow: 'hidden',
       }}>
-        {/* Decorative line */}
         <img
           src="/dist/Vector 2241.png"
           alt=""
@@ -724,7 +549,6 @@ export const TestPage: React.FC = () => {
           }}
         />
 
-        {/* Floating text labels */}
         {floatingLabels.map((label, i) => (
           <div
             key={i}
@@ -739,7 +563,6 @@ export const TestPage: React.FC = () => {
           </div>
         ))}
 
-        {/* Questions */}
         <div className="questions-container" style={{
           position: 'relative',
           width: '100%',
@@ -754,7 +577,6 @@ export const TestPage: React.FC = () => {
               <div className="question-number">
                 {q.id}. {q.text}
               </div>
-
               <div className="radio-row">
                 {[0, 1, 2, 3].map((val) => {
                   const isSelected = answers[q.id] === val;
@@ -770,7 +592,6 @@ export const TestPage: React.FC = () => {
                   );
                 })}
               </div>
-
               <div className="labels-row">
                 {optionLabels.map((label, idx) => {
                   const isSelected = answers[q.id] === idx;
@@ -790,7 +611,8 @@ export const TestPage: React.FC = () => {
             marginTop: '32px',
             marginBottom: '40px',
           }}>
-            <button className="result-btn" onClick={() => { window.location.hash = 'result'; }}>
+            {/* КНОПКА С НОВОЙ ЛОГИКОЙ */}
+            <button className="result-btn" onClick={handleGoToResult}>
               Перейти к результату
             </button>
           </div>
@@ -835,7 +657,6 @@ export const TestPage: React.FC = () => {
               }}
             />
           </div>
-
           <div className="footer-nav">
             {footerNavLinks.map((item) => (
               <a
@@ -859,7 +680,6 @@ export const TestPage: React.FC = () => {
               </a>
             ))}
           </div>
-
           <div className="footer-flowers" style={{
             position: 'absolute',
             width: '693px',

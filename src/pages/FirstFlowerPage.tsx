@@ -50,8 +50,8 @@ export const FirstFlowerPage: React.FC = () => {
         
         #root {
           display: flex;
-          flex-direction: column;
-          align-items: center;
+          flexDirection: column;
+          alignItems: center;
           width: 100%;
           min-height: 100vh;
         }
@@ -102,18 +102,18 @@ export const FirstFlowerPage: React.FC = () => {
         style={{ 
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           alignItems: 'center',
-          padding: '20px 0',
+          padding: '20px 40px',
           position: 'fixed',
           width: '100%',
           maxWidth: '1409px',
           height: '98px',
           left: '50%',
           transform: 'translateX(-50%)',
-          top: headerFixed ? '0' : '44px',
+          top: headerFixed ? '0' : '0',        // ← УБРАН ЗАЗОР: было '44px', стало '0'
           background: '#FFFFFF',
-          borderRadius: '15px',
+          borderRadius: headerFixed ? '0 0 15px 15px' : '15px',  // ← Скругление только снизу когда fixed
           margin: '0 auto',
           boxSizing: 'border-box',
           boxShadow: headerFixed ? '0 2px 8px rgba(0, 0, 0, 0.1)' : 'none',
@@ -202,7 +202,7 @@ export const FirstFlowerPage: React.FC = () => {
 
       {/* ===== HERO SECTION ===== */}
       <section className="section-wrapper" style={{ 
-        paddingTop: '180px',
+        paddingTop: '118px',                    // ← УМЕНЬШЕН ОТСТУП: было '180px', стало '118px' (98px хедер + 20px)
         paddingBottom: '0',
         minHeight: '985px',
         background: 'linear-gradient(180deg, #FFF8F0 0%, #FFEEDD 60%, #FFEEDD 100%)',
@@ -346,9 +346,8 @@ export const FirstFlowerPage: React.FC = () => {
         {/* Flowers Background - Full Width */}
         <div style={{
           position: 'absolute',
-          width: '100vw',
-          left: '50%',
-          transform: 'translateX(-50%)',
+          width: '100%',
+          left: '0',                            // ← ИСПРАВЛЕНО: было '50%' + transform, стало просто '0'
           bottom: '0',
           zIndex: 0,
           display: 'flex',
@@ -359,10 +358,11 @@ export const FirstFlowerPage: React.FC = () => {
             src="/Цветочная композиция.png" 
             alt="Цветочная композиция" 
             style={{
-              width: '100vw',
-              maxWidth: '100%',
+              width: '100%',                    // ← ИСПРАВЛЕНО: было '100vw', стало '100%'
               height: 'auto',
               display: 'block',
+              objectFit: 'cover',               // ← ДОБАВЛЕНО: растягивает картинку на всю ширину
+              objectPosition: 'bottom center',    // ← ДОБАВЛЕНО: прижимает к низу и центрирует
             }} 
           />
         </div>

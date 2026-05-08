@@ -11,32 +11,58 @@ function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'first-flower' | 'main-modules' | 'test' | 'result'>('home');
 
   useEffect(() => {
-    const handleHashChange = () => {
-      if (window.location.hash === '#first-flower') {
+    const handleRouteChange = () => {
+      const hash = window.location.hash;
+
+      // 1. Сначала проверяем явные переходы по хэшам (меню)
+      if (hash === '#first-flower') {
         setCurrentPage('first-flower');
-      } else if (window.location.hash === '#main-modules') {
-        setCurrentPage('main-modules');
-      } else if (window.location.hash === '#test') {
-        setCurrentPage('test');
-      } else if (window.location.hash === '#result') {
-        setCurrentPage('result');
-      } else {
-        setCurrentPage('home');
+        return;
       }
+      if (hash === '#main-modules') {
+        setCurrentPage('main-modules');
+        return;
+      }
+      if (hash === '#test') {
+        setCurrentPage('test');
+        return;
+      }
+      if (hash === '#result') {
+        setCurrentPage('result');
+        return;
+      }
+
+      // 2. Если хэш пустой (главная), проверяем ?type= для результата теста
+      if (!hash || hash === '#') {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('type')) {
+          setCurrentPage('result');
+          return;
+        }
+      }
+
+      // 3. Дефолт — главная
+      setCurrentPage('home');
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    handleRouteChange();
+    window.addEventListener('hashchange', handleRouteChange);
+    window.addEventListener('popstate', handleRouteChange);
+    return () => {
+      window.removeEventListener('hashchange', handleRouteChange);
+      window.removeEventListener('popstate', handleRouteChange);
+    };
   }, []);
 
   return (
     <ConfigProvider theme={vydohTheme}>
-      {currentPage === 'home' ? <HomePage /> : currentPage === 'first-flower' ? <FirstFlowerPage /> : currentPage === 'test' ? <TestPage /> : currentPage === 'result' ? <ResultPage /> : <MainScreenWithModules />}
+      {currentPage === 'home' ? <HomePage /> : 
+       currentPage === 'first-flower' ? <FirstFlowerPage /> : 
+       currentPage === 'test' ? <TestPage /> : 
+       currentPage === 'result' ? <ResultPage /> : 
+       <MainScreenWithModules />}
     </ConfigProvider>
   );
 }
 
-
 export default App;
-
