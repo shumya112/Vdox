@@ -547,7 +547,7 @@ export const TestPage: React.FC = () => {
             pointerEvents: 'none',
             zIndex: 0,
             objectFit: 'contain',
-            border: '1px solid #3D1903',  // ← рамка для отладки (убери потом)
+
           }}
 />
 
