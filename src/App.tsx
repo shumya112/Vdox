@@ -11,11 +11,24 @@ import { useEffect, useState } from 'react';
 function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'first-flower' | 'main-modules' | 'test' | 'result' | 'devaluation'>('home');
 
+  // 🔹 СБРОС СКРОЛЛА — ОТДЕЛЬНЫЙ useEffect
+  useEffect(() => {
+    // 1. Запрещаем браузеру восстанавливать скролл
+    window.history.scrollRestoration = 'manual';
+    
+    // 2. Скроллим вверх ПОСЛЕ того, как браузер отрисует кадр
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      });
+    });
+  }, [currentPage]); // 👈 Срабатывает при каждой смене страницы
+
+  // 🔹 Роутинг по хэшам
   useEffect(() => {
     const handleRouteChange = () => {
       const hash = window.location.hash;
 
-      // 1. Сначала проверяем явные переходы по хэшам (меню)
       if (hash === '#first-flower') {
         setCurrentPage('first-flower');
         return;
@@ -37,7 +50,6 @@ function App() {
         return;
       }
 
-      // 2. Если хэш пустой (главная), проверяем ?type= для результата теста
       if (!hash || hash === '#') {
         const params = new URLSearchParams(window.location.search);
         if (params.get('type')) {
@@ -46,10 +58,9 @@ function App() {
         }
       }
 
-      // 3. Дефолт — главная
       setCurrentPage('home');
     };
-
+      
     handleRouteChange();
     window.addEventListener('hashchange', handleRouteChange);
     window.addEventListener('popstate', handleRouteChange);

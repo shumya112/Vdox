@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 
 const navItems = [
   { label: 'О курсе', href: '#about' },
@@ -10,11 +10,26 @@ const navItems = [
 export const FirstFlowerPage: React.FC = () => {
   const [headerFixed, setHeaderFixed] = useState(false);
 
-  useEffect(() => {
+  // 🔹 Скролл-листнер для хедера (оставляем как есть)
+  useLayoutEffect(() => {
     const handleScroll = () => setHeaderFixed(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // 🔹 ГАРАНТИРОВАННЫЙ сброс скролла при загрузке страницы
+  useLayoutEffect(() => {
+    // Отключаем восстановление скролла браузером
+    window.history.scrollRestoration = 'manual';
+    
+    // Ждём 2 кадра анимации — браузер точно закончит свою магию с хэшем
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        console.log('🌷 Скролл сброшен на 0');
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      });
+    });
   }, []);
 
   const footerNavLinks = [
@@ -45,6 +60,8 @@ export const FirstFlowerPage: React.FC = () => {
           margin: 0;
           padding: 0;
           overflow-x: hidden;
+          overflow-y: auto; /* 👈 ВАЖНО: разрешаем вертикальный скролл */
+          scroll-behavior: auto; /* 👈 Отключаем плавный скролл для навигации */
         }
         body { margin: 0; }
         
@@ -59,7 +76,7 @@ export const FirstFlowerPage: React.FC = () => {
         .section-wrapper {
           position: relative;
           width: 100%;
-          overflow: hidden;
+          overflow: visible; /* 👈 Было 'hidden' — меняем на visible, чтобы не обрезало */
         }
         
         .section-content {
@@ -111,9 +128,9 @@ export const FirstFlowerPage: React.FC = () => {
           height: '98px',
           left: '50%',
           transform: 'translateX(-50%)',
-          top: headerFixed ? '0' : '0',        // ← УБРАН ЗАЗОР: было '44px', стало '0'
+          top: headerFixed ? '0' : '0',
           background: '#FFFFFF',
-          borderRadius: headerFixed ? '0 0 15px 15px' : '15px',  // ← Скругление только снизу когда fixed
+          borderRadius: headerFixed ? '0 0 15px 15px' : '15px',
           margin: '0 auto',
           boxSizing: 'border-box',
           boxShadow: headerFixed ? '0 2px 8px rgba(0, 0, 0, 0.1)' : 'none',
@@ -202,7 +219,7 @@ export const FirstFlowerPage: React.FC = () => {
 
       {/* ===== HERO SECTION ===== */}
       <section className="section-wrapper" style={{ 
-        paddingTop: '118px',                    // ← УМЕНЬШЕН ОТСТУП: было '180px', стало '118px' (98px хедер + 20px)
+        paddingTop: '118px',
         paddingBottom: '0',
         minHeight: '985px',
         background: 'linear-gradient(180deg, #FFF8F0 0%, #FFEEDD 60%, #FFEEDD 100%)',
@@ -347,7 +364,7 @@ export const FirstFlowerPage: React.FC = () => {
         <div style={{
           position: 'absolute',
           width: '100%',
-          left: '0',                            // ← ИСПРАВЛЕНО: было '50%' + transform, стало просто '0'
+          left: '0',
           bottom: '0',
           zIndex: 0,
           display: 'flex',
@@ -358,11 +375,11 @@ export const FirstFlowerPage: React.FC = () => {
             src="/Цветочная композиция.png" 
             alt="Цветочная композиция" 
             style={{
-              width: '100%',                    // ← ИСПРАВЛЕНО: было '100vw', стало '100%'
+              width: '100%',
               height: 'auto',
               display: 'block',
-              objectFit: 'cover',               // ← ДОБАВЛЕНО: растягивает картинку на всю ширину
-              objectPosition: 'bottom center',    // ← ДОБАВЛЕНО: прижимает к низу и центрирует
+              objectFit: 'cover',
+              objectPosition: 'bottom center',
             }} 
           />
         </div>
