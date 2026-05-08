@@ -4,10 +4,11 @@ import { HomePage } from './pages/HomePage';
 import { FirstFlowerPage } from './pages/FirstFlowerPage';
 import { MainScreenWithModules } from './pages/MainScreenWithModules';
 import { TestPage } from './pages/TestPage';
+import { ResultPage } from './pages/ResultPage';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'first-flower' | 'main-modules' | 'test'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'first-flower' | 'main-modules' | 'test' | 'result'>('home');
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -17,6 +18,8 @@ function App() {
         setCurrentPage('main-modules');
       } else if (window.location.hash === '#test') {
         setCurrentPage('test');
+      } else if (window.location.hash === '#result') {
+        setCurrentPage('result');
       } else {
         setCurrentPage('home');
       }
@@ -29,7 +32,7 @@ function App() {
 
   return (
     <ConfigProvider theme={vydohTheme}>
-      {currentPage === 'home' ? <HomePage /> : currentPage === 'first-flower' ? <FirstFlowerPage /> : currentPage === 'test' ? <TestPage /> : <MainScreenWithModules />}
+      {currentPage === 'home' ? <HomePage /> : currentPage === 'first-flower' ? <FirstFlowerPage /> : currentPage === 'test' ? <TestPage /> : currentPage === 'result' ? <ResultPage /> : <MainScreenWithModules />}
     </ConfigProvider>
   );
 }
