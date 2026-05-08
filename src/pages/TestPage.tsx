@@ -534,7 +534,7 @@ export const TestPage: React.FC = () => {
         overflow: 'hidden',
       }}>
         <img
-          src="/dist/Vector 2241.png"
+          src="/dist/Vector-2241.png"
           alt=""
           className="decorative-line"
           style={{
