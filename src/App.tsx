@@ -6,6 +6,8 @@ import { MainScreenWithModules } from './pages/MainScreenWithModules';
 import { TestPage } from './pages/TestPage';
 import { ResultPage } from './pages/ResultPage';
 import { DevaluationModulePage } from './pages/DevaluationModulePage';
+import { ModuleTemplatePage } from './pages/ModuleTemplatePage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -72,12 +74,24 @@ function App() {
 
   return (
     <ConfigProvider theme={vydohTheme}>
-      {currentPage === 'home' ? <HomePage /> : 
-       currentPage === 'first-flower' ? <FirstFlowerPage /> : 
-       currentPage === 'test' ? <TestPage /> : 
-       currentPage === 'result' ? <ResultPage /> : 
-       currentPage === 'devaluation' ? <DevaluationModulePage /> :
-       <MainScreenWithModules />}
+      <BrowserRouter>
+        <Routes>
+          {/* Динамический роут для модулей */}
+          <Route path="/module/:slug" element={<ModuleTemplatePage />} />
+          
+          {/* Остальные роуты через хэш-навигацию */}
+          <Route path="*" element={
+            <>
+              {currentPage === 'home' ? <HomePage /> : 
+               currentPage === 'first-flower' ? <FirstFlowerPage /> : 
+               currentPage === 'test' ? <TestPage /> : 
+               currentPage === 'result' ? <ResultPage /> : 
+               currentPage === 'devaluation' ? <DevaluationModulePage /> :
+               <MainScreenWithModules />}
+            </>
+          } />
+        </Routes>
+      </BrowserRouter>
     </ConfigProvider>
   );
 }
