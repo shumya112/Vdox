@@ -1,26 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { modulesData } from '../data/modulesData';
 
 const navItems = [
   { label: 'О курсе', href: '#about' },
   { label: 'Симптомы', href: '#symptoms' },
   { label: 'Как это работает', href: '#howitworks' },
   { label: 'Специалисты', href: '#specialists' },
-];
-
-interface Symptom {
-  number: string;
-  name: string;
-  link: string;
-  isLocked: boolean;
-}
-
-const symptoms: Symptom[] = [
-  { number: 'Симптом 1.', name: 'Обесценивание себя', link: '#devaluation', isLocked: false },
-  { number: 'Симптом 2.', name: 'Хроническое опоздание', link: '#main-modules', isLocked: false },
-  { number: 'Симптом 3.', name: 'Социальная мимикрия', link: '#main-modules', isLocked: true },
-  { number: 'Симптом 4.', name: 'Эмоциональное выгорание', link: '#main-modules', isLocked: true },
-  { number: 'Симптом 5.', name: 'Спасательство / гиперпомощь', link: '#main-modules', isLocked: true },
-  { number: 'Симптом 6.', name: 'Прокрастинация', link: '#main-modules', isLocked: true },
 ];
 
 // SVG иконка замка
@@ -40,6 +26,7 @@ const LockIcon = () => (
 );
 
 export const MainScreenWithModules = () => {
+  const navigate = useNavigate();
   const [headerFixed, setHeaderFixed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -89,6 +76,11 @@ export const MainScreenWithModules = () => {
       el.scrollIntoView({ behavior: 'smooth' });
       setMobileMenuOpen(false);
     }
+  };
+
+  const handleModuleClick = (slug: string, isLocked: boolean) => {
+    if (isLocked) return;
+    navigate(`/module/${slug}`);
   };
 
   const linkColor = '#111';
@@ -880,26 +872,25 @@ export const MainScreenWithModules = () => {
         {/* Symptoms Cards */}
         <section className="symptoms-section" id="symptoms">
           <div className="symptoms-grid">
-            {symptoms.map((s, i) => (
+            {modulesData.map((module) => (
               <div 
-                className={`symptom-card ${s.isLocked ? 'locked' : ''}`} 
-                key={i}
+                className={`symptom-card ${module.isLocked ? 'locked' : ''}`} 
+                key={module.id}
               >
-                {s.isLocked && <LockIcon />}
-                <p className="symptom-label">{s.number}</p>
-                <h3 className="symptom-title">{s.name}</h3>
-                <a 
-                  href={s.link} 
+                {module.isLocked && <LockIcon />}
+                <p className="symptom-label">{module.number}</p>
+                <h3 className="symptom-title">{module.title}</h3>
+                <button 
                   className="symptom-btn" 
                   style={{ 
                     display: 'inline-flex', 
                     textDecoration: 'none',
-                    pointerEvents: s.isLocked ? 'none' : 'auto'
+                    pointerEvents: module.isLocked ? 'none' : 'auto'
                   }}
-                  onClick={(e) => s.isLocked && e.preventDefault()}
+                  onClick={() => handleModuleClick(module.slug, module.isLocked)}
                 >
                   Перейти к модулю
-                </a>
+                </button>
               </div>
             ))}
           </div>
