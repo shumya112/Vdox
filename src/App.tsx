@@ -9,6 +9,7 @@ import { DevaluationModulePage } from './pages/DevaluationModulePage';
 import { ModuleTemplatePage } from './pages/ModuleTemplatePage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { TaskPage } from './pages/TaskPage';  // ← Добавь это
 
 function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'first-flower' | 'main-modules' | 'test' | 'result' | 'devaluation'>('home');
@@ -78,6 +79,7 @@ function App() {
         <Routes>
           {/* Динамический роут для модулей */}
           <Route path="/module/:slug" element={<ModuleTemplatePage />} />
+          <Route path="/module/:slug/task/:taskId" element={<TaskPage />} />
           
           {/* Остальные роуты через хэш-навигацию */}
           <Route path="*" element={

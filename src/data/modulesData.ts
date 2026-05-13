@@ -1,64 +1,92 @@
+export interface Task {
+  title: string;
+  link: string;
+}
+
 export interface ModuleData {
-  id: string;
   slug: string;
   number: string;
   title: string;
-  description?: string;
+  description: string;
+  color: string;
+  backgroundImage: string;
+  tasks: Task[];
   isLocked: boolean;
-  color?: string;
 }
 
 export const modulesData: ModuleData[] = [
   {
-    id: '1',
     slug: 'devaluation',
-    number: 'Симптом 1.',
+    number: 'Симптом 1',
     title: 'Обесценивание себя',
-    isLocked: false,
+    description: 'В этом модуле ты разберёшь, почему откладываешь даже важные дела, и начнёшь менять это через маленькие понятные шаги.',
     color: '#4DB8B0',
+    backgroundImage: '/lavender.png',
+    isLocked: false,
+    tasks: [
+      { title: 'Первая встреча', link: '#' },
+      { title: 'Суд над внутренним критиком', link: '#' },
+      { title: 'Карточная игра «Сценарии»', link: '#' },
+      { title: 'Все самое нужное для дальнейшей жизни', link: '#' },
+    ],
   },
   {
-    id: '2',
-    slug: 'chronic-lateness',
-    number: 'Симптом 2.',
+    slug: 'lateness',
+    number: 'Симптом 2',
     title: 'Хроническое опоздание',
-    isLocked: false,
+    description: 'В этом модуле ты разберёшься, почему опаздываешь.',
     color: '#4DB8B0',
+    backgroundImage: '/Frame 274 лаванда.png',
+    isLocked: false,
+    tasks: [
+      { title: 'Первая встреча', link: '#' },
+      { title: 'Суд над внутренним критиком', link: '#' },
+      { title: 'Карточная игра «Сценарии»', link: '#' },
+      { title: 'Все самое нужное для дальнейшей жизни', link: '#' },
+    ],
   },
   {
-    id: '3',
-    slug: 'social-mimicry',
-    number: 'Симптом 3.',
+    slug: 'mimicry',
+    number: 'Симптом 3',
     title: 'Социальная мимикрия',
-    isLocked: true,
+    description: 'Модуль временно недоступен',
     color: '#999',
+    backgroundImage: '',
+    isLocked: true,
+    tasks: [],
   },
   {
-    id: '4',
-    slug: 'emotional-burnout',
-    number: 'Симптом 4.',
+    slug: 'burnout',
+    number: 'Симптом 4',
     title: 'Эмоциональное выгорание',
-    isLocked: true,
+    description: 'Модуль временно недоступен',
     color: '#999',
+    backgroundImage: '',
+    isLocked: true,
+    tasks: [],
   },
   {
-    id: '5',
-    slug: 'rescue-hyperhelp',
-    number: 'Симптом 5.',
+    slug: 'rescue',
+    number: 'Симптом 5',
     title: 'Спасательство / гиперпомощь',
-    isLocked: true,
+    description: 'Модуль временно недоступен',
     color: '#999',
+    backgroundImage: '',
+    isLocked: true,
+    tasks: [],
   },
   {
-    id: '6',
     slug: 'procrastination',
-    number: 'Симптом 6.',
+    number: 'Симптом 6',
     title: 'Прокрастинация',
-    isLocked: true,
+    description: 'Модуль временно недоступен',
     color: '#999',
+    backgroundImage: '',
+    isLocked: true,
+    tasks: [],
   },
 ];
 
 export const getModuleBySlug = (slug: string): ModuleData | undefined => {
-  return modulesData.find(module => module.slug === slug);
+  return modulesData.find((module) => module.slug === slug);
 };
