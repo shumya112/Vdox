@@ -7,14 +7,37 @@ const navItems = [
   { label: 'Специалисты', href: '#specialists' },
 ];
 
-const symptoms = [
-  { number: 'Симптом 1.', name: 'Прокрастинация', link: '#main-modules' },
-  { number: 'Симптом 2.', name: 'Хроническое опоздание', link: '#main-modules' },
-  { number: 'Симптом 1.', name: 'Социальная мимикрия', link: '#main-modules' },
-  { number: 'Симптом 1.', name: 'Эмоциональное выгорание', link: '#main-modules' },
-  { number: 'Симптом 2.', name: 'Спасательство / гиперпомощь', link: '#main-modules' },
-  { number: 'Симптом 1.', name: 'Обесценивание себя', link: '#devaluation' },
+interface Symptom {
+  number: string;
+  name: string;
+  link: string;
+  isLocked: boolean;
+}
+
+const symptoms: Symptom[] = [
+  { number: 'Симптом 1.', name: 'Обесценивание себя', link: '#devaluation', isLocked: false },
+  { number: 'Симптом 2.', name: 'Хроническое опоздание', link: '#main-modules', isLocked: false },
+  { number: 'Симптом 3.', name: 'Социальная мимикрия', link: '#main-modules', isLocked: true },
+  { number: 'Симптом 4.', name: 'Эмоциональное выгорание', link: '#main-modules', isLocked: true },
+  { number: 'Симптом 5.', name: 'Спасательство / гиперпомощь', link: '#main-modules', isLocked: true },
+  { number: 'Симптом 6.', name: 'Прокрастинация', link: '#main-modules', isLocked: true },
 ];
+
+// SVG иконка замка
+const LockIcon = () => (
+  <svg 
+    width="24" 
+    height="24" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ position: 'absolute', right: '20px', top: '20px' }}
+  >
+    <rect x="5" y="11" width="14" height="10" rx="2" fill="white" fillOpacity="0.6"/>
+    <path d="M8 11V8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8V11" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    <circle cx="12" cy="16" r="1.5" fill="white" fillOpacity="0.6"/>
+  </svg>
+);
 
 export const MainScreenWithModules = () => {
   const [headerFixed, setHeaderFixed] = useState(false);
@@ -272,11 +295,22 @@ export const MainScreenWithModules = () => {
           gap: 12px;
           transition: transform 0.2s ease, box-shadow 0.2s ease;
           min-height: 120px;
+          position: relative;
         }
 
         .symptom-card:hover {
           transform: translateY(-3px);
           box-shadow: 0 8px 24px rgba(61, 25, 3, 0.08);
+        }
+
+        .symptom-card.locked {
+          background: #E8E6E1;
+          opacity: 0.7;
+        }
+
+        .symptom-card.locked:hover {
+          transform: none;
+          box-shadow: none;
         }
 
         .symptom-label {
@@ -288,6 +322,10 @@ export const MainScreenWithModules = () => {
           margin: 0;
         }
 
+        .symptom-card.locked .symptom-label {
+          color: #999;
+        }
+
         .symptom-title {
           font-family: 'Evolventa', sans-serif;
           font-weight: 400;
@@ -295,6 +333,10 @@ export const MainScreenWithModules = () => {
           line-height: 26px;
           color: #3D1903;
           margin: 0;
+        }
+
+        .symptom-card.locked .symptom-title {
+          color: #999;
         }
 
         .symptom-btn {
@@ -320,6 +362,12 @@ export const MainScreenWithModules = () => {
 
         .symptom-btn:hover {
           background: #3DA8A0;
+        }
+
+        .symptom-card.locked .symptom-btn {
+          background: rgba(77, 184, 176, 0.4);
+          cursor: not-allowed;
+          pointer-events: none;
         }
 
         /* ===== FOOTER ===== */
@@ -833,10 +881,25 @@ export const MainScreenWithModules = () => {
         <section className="symptoms-section" id="symptoms">
           <div className="symptoms-grid">
             {symptoms.map((s, i) => (
-              <div className="symptom-card" key={i}>
+              <div 
+                className={`symptom-card ${s.isLocked ? 'locked' : ''}`} 
+                key={i}
+              >
+                {s.isLocked && <LockIcon />}
                 <p className="symptom-label">{s.number}</p>
                 <h3 className="symptom-title">{s.name}</h3>
-                <a href={s.link} className="symptom-btn" style={{ display: 'inline-flex', textDecoration: 'none' }}>Перейти к модулю</a>
+                <a 
+                  href={s.link} 
+                  className="symptom-btn" 
+                  style={{ 
+                    display: 'inline-flex', 
+                    textDecoration: 'none',
+                    pointerEvents: s.isLocked ? 'none' : 'auto'
+                  }}
+                  onClick={(e) => s.isLocked && e.preventDefault()}
+                >
+                  Перейти к модулю
+                </a>
               </div>
             ))}
           </div>

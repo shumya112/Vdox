@@ -7,7 +7,15 @@ const navItems = [
   { label: 'Специалисты', href: '#specialists' },
 ];
 
-
+const stepText = {
+  fontFamily: "'Evolventa', sans-serif",
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '40px',
+  lineHeight: '53px',
+  color: '#F4F5F0',
+  margin: 0,
+};
 
 export const DesktopHomePage = () => {
   const [headerFixed, setHeaderFixed] = useState(false);
@@ -95,6 +103,8 @@ export const DesktopHomePage = () => {
           color: #111111; 
         }
         .nav-pill:hover { opacity: 0.9; }
+        
+        html { scroll-behavior: smooth; }
       `}</style>
 
       {/* ===== HEADER ===== */}
@@ -156,7 +166,7 @@ export const DesktopHomePage = () => {
             flex: 1,
             margin: '0 20px',
           }}>
-                        {navItems.map((item) => (
+            {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
@@ -200,7 +210,7 @@ export const DesktopHomePage = () => {
         </div>
       </header>
 
-      {/* ===== HERO SECTION (underheader) ===== */}
+      {/* ===== HERO SECTION (Обновлено) ===== */}
       <div className="section-wrapper" style={{ 
         height: '697px',
         backgroundImage: 'url("/underheader.png")',
@@ -209,95 +219,80 @@ export const DesktopHomePage = () => {
         backgroundRepeat: 'no-repeat',
       }}>
         <div className="section-content">
+          
+          {/* ✅ Заголовок: "Выдох..." */}
           <h1 style={{
             position: 'absolute',
-            width: '475px',
-            height: '131px',
             left: '164px',
-            top: '257px',
-            fontFamily: "'mr_GuardianCircusG', sans-serif",
-            fontStyle: 'normal',
+            top: '220px',
+            fontFamily: "'mr_GuardianCircusG', sans-serif", // Рукописный шрифт
             fontWeight: 400,
-            fontSize: '78px',
-            lineHeight: '63px',
-            color: '#3D1903'
-          }}>
-            Собери свой сад из новых привычек
-          </h1>
-           
-          <div style={{
-            position: 'absolute',
-            width: '419px',
-            height: '72px',
-            left: '164px',
-            top: '397px',
-            fontFamily: "'Evolventa', sans-serif",
-            fontStyle: 'normal',
-            fontSize: '24px',
-            lineHeight: '24px',
+            fontSize: '96px',
+            lineHeight: '1',
             color: '#3D1903',
             margin: 0,
+            whiteSpace: 'nowrap'
           }}>
-            <span style={{ fontWeight: 'bold' }}>6 симптомов | 6 модулей</span> <br />
-            <span style={{ fontWeight: 400 }}>
-              понятные шаги и трекеры, которые реально меняют поведение
-            </span>
+            Выдох...
+          </h1>
+           
+          {/* ✅ Подзаголовок */}
+          <div style={{
+            position: 'absolute',
+            left: '164px',
+            top: '360px',
+            fontFamily: "'Evolventa', sans-serif",
+            fontSize: '28px',
+            lineHeight: '38px',
+            color: '#3D1903',
+            margin: 0,
+            maxWidth: '600px',
+          }}>
+            <p style={{ margin: 0, fontWeight: 400 }}>
+              Перестань дышать <b>за других</b>
+            </p>
+            <p style={{ margin: 0, fontWeight: 400 }}>
+              И собери свой сад <b>из новых привычек</b>
+            </p>
           </div>
           
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '16px 24px',
-            gap: '16px',
-            position: 'absolute',
-            width: '340px',
-            height: '56px',
-            left: '164px',
-            top: '513px',
-            background: '#F4F5F0',
-            borderRadius: '38px',
-            cursor: 'pointer',
-            border: 'none'
-          }}> 
-            
+          {/* ✅ Кнопка */}
+          <button 
+            onClick={() => {
+              console.log('🔗 Переход к первому цветку');
+              window.location.hash = '#first-flower';
+            }}
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '16px 24px',
+              gap: '16px',
+              position: 'absolute',
+              width: '300px',
+              height: '56px',
+              left: '164px',
+              top: '500px',
+              background: '#F4F5F0',
+              borderRadius: '38px',
+              border: 'none',
+              cursor: 'pointer',
+              outline: 'none',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+            }}
+          >
             <span style={{
-              width: '292px',
-              height: '24px',
               fontFamily: "'Evolventa', sans-serif",
               fontStyle: 'normal',
-              fontWeight: 400,
-              fontSize: '24px',
+              fontWeight: 500,
+              fontSize: '20px',
               lineHeight: '24px',
               color: '#111111',
-              flex: 'none',
-              order: 0,
-              flexGrow: 0,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
             }}>
-              Начать варащивать сад
-                        <a
-            href="#symptoms"
-            style={{
-              position: 'absolute',
-              top: '55%',
-              right: '10%',
-              transform: 'translateY(-50%)',
-              zIndex: 10,
-              width: 220,
-              height: 56,
-              display: 'block',
-              cursor: 'pointer',
-            }}
-            aria-label="Начать выращивать сад"
-          />  
+              Начать выращивать сад
             </span>
-          </div>
-  
-
+          </button>
         </div>
       </div>
 
@@ -589,38 +584,33 @@ export const DesktopHomePage = () => {
             ))}
           </div>
           <button style={{
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  padding: '16px 24px',
-  gap: '16px',
-  
-  position: 'absolute',
-  width: '259px',
-  height: '56px',
-  left: '737px',
-  top: '1403px',
-  
-  background: '#4FB1A8', // Акцентный бирюзовый цвет
-  borderRadius: '38px',
-  
-  // Сброс стандартных стилей кнопки
-  border: 'none',
-  cursor: 'pointer',
-  outline: 'none'
-}}>
-  {/* Текст внутри кнопки */}
-  <span style={{
-    color: '#FFFFFF', // Белый текст для контраста
-    fontFamily: "'Evolventa', sans-serif",
-    fontWeight: 500,
-    fontSize: '18px',
-    lineHeight: '24px'
-  }}>
-    Отправить заявку
-  </span>
-</button>
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '16px 24px',
+            gap: '16px',
+            position: 'absolute',
+            width: '259px',
+            height: '56px',
+            left: '737px',
+            top: '1403px',
+            background: '#4FB1A8',
+            borderRadius: '38px',
+            border: 'none',
+            cursor: 'pointer',
+            outline: 'none'
+          }}>
+            <span style={{
+              color: '#FFFFFF',
+              fontFamily: "'Evolventa', sans-serif",
+              fontWeight: 500,
+              fontSize: '18px',
+              lineHeight: '24px'
+            }}>
+              Отправить заявку
+            </span>
+          </button>
         </div>
       </section>
 
@@ -913,28 +903,29 @@ export const DesktopHomePage = () => {
           </span>
           
           <button 
-          onClick={() => {
-            console.log('🔗 Переход по хэшу');
-            window.location.hash = '#first-flower';
-          }}
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '16px 24px',
-            gap: '16px',
-            position: 'absolute',
-            width: '353px',
-            height: '56px',
-            left: 'calc(50% - 353px/2 + 0.5px)',
-            top: '231px',
-            background: '#3D1903',
-            borderRadius: '38px',
-            border: 'none',
-            cursor: 'pointer',
-            outline: 'none'
-          }}>
+            onClick={() => {
+              console.log('🔗 Переход по хэшу');
+              window.location.hash = '#first-flower';
+            }}
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '16px 24px',
+              gap: '16px',
+              position: 'absolute',
+              width: '353px',
+              height: '56px',
+              left: 'calc(50% - 353px/2 + 0.5px)',
+              top: '231px',
+              background: '#3D1903',
+              borderRadius: '38px',
+              border: 'none',
+              cursor: 'pointer',
+              outline: 'none'
+            }}
+          >
             <span style={{
               color: '#F4F5F0',
               fontFamily: "'Evolventa', sans-serif",
@@ -947,7 +938,7 @@ export const DesktopHomePage = () => {
         </div>
       </section>
 
-            {/* ===== FOOTER ===== */}
+      {/* ===== FOOTER ===== */}
       <section className="section-wrapper" style={{
         height: '547px',
         background: '#3D1903',
@@ -1022,14 +1013,4 @@ export const DesktopHomePage = () => {
       </section>
     </div>
   );
-};
-
-const stepText = {
-  fontFamily: "'Evolventa', sans-serif",
-  fontStyle: 'normal' as const,
-  fontWeight: 400,
-  fontSize: '40px',
-  lineHeight: '53px',
-  color: '#F4F5F0',
-  margin: 0,
 };
