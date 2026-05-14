@@ -9,6 +9,7 @@ const navItems = [
   { label: 'Специалисты', href: '#specialists' },
 ];
 
+// Данные для заданий с индивидуальными темами
 const taskData: { [key: string]: {
   title: string;
   subtitle: string;
@@ -18,6 +19,15 @@ const taskData: { [key: string]: {
     text: string;
   }>;
   videoUrl?: string;
+  theme: {
+    primaryColor: string;
+    secondaryColor: string;
+    backgroundColor: string;
+    gradientFrom: string;
+    gradientTo: string;
+    buttonColor: string;
+    buttonHoverColor: string;
+  };
 }} = {
   'first-meeting': {
     title: 'Сначала — короткое приветствие',
@@ -38,25 +48,43 @@ const taskData: { [key: string]: {
       },
     ],
     videoUrl: 'https://rutube.ru/play/embed/2b3bcfe832b9af660f579b67a02e6000/?p=4XENKIBpo_AHv7kaM6wvkw',
+    theme: {
+      primaryColor: '#4DB8B0',
+      secondaryColor: '#3D1903',
+      backgroundColor: '#F5E6D3',
+      gradientFrom: '#F5E6D3',
+      gradientTo: '#FFFFFF',
+      buttonColor: '#4DB8B0',
+      buttonHoverColor: '#3DA8A0',
+    },
   },
   'inner-critic': {
     title: 'Суд над внутренним критиком',
     subtitle: 'Второе задание',
-    description: 'Работа с внутренним критиком и самокритикой.',
+    description: 'Работа с внутренним критиком и самокритикой. Научитесь распознавать критический внутренний диалог и трансформировать его в поддерживающий.',
     cards: [
       {
         title: 'Узнай своего критика',
-        text: 'Поймёшь, как звучит твой внутренний критик.',
+        text: 'Поймёшь, как звучит твой внутренний критик и откуда он берётся.',
       },
       {
         title: 'Научись отвечать',
-        text: 'Получишь техники работы с самокритикой.',
+        text: 'Получишь техники работы с самокритикой и замены её на самоподдержку.',
       },
       {
         title: 'Практика',
-        text: 'Выполнишь упражнение по работе с критиком.',
+        text: 'Выполнишь упражнение по работе с критиком и создашь новый диалог с собой.',
       },
     ],
+    theme: {
+      primaryColor: '#B87C57',
+      secondaryColor: '#3D1903',
+      backgroundColor: '#F9EDE5',
+      gradientFrom: '#F9EDE5',
+      gradientTo: '#FFF5F0',
+      buttonColor: '#B87C57',
+      buttonHoverColor: '#9C6545',
+    },
   },
 };
 
@@ -135,6 +163,9 @@ export const TaskPage: React.FC = () => {
   const isYouTube = task.videoUrl?.includes('youtube') || task.videoUrl?.includes('youtu.be');
   const isVimeo = task.videoUrl?.includes('vimeo');
   const isRutube = task.videoUrl?.includes('rutube');
+  
+  // Получаем тему текущего модуля
+  const theme = task.theme;
 
   return (
     <div style={styles.pageWrapper}>
@@ -198,9 +229,13 @@ export const TaskPage: React.FC = () => {
           padding: 24px;
           flex: 1;
           min-width: 280px;
-          transition: transform 0.2s;
+          transition: transform 0.2s, box-shadow 0.2s;
+          border-top: 4px solid ${theme.primaryColor};
         }
-        .info-card:hover { transform: translateY(-4px); }
+        .info-card:hover { 
+          transform: translateY(-4px);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
         .info-card-title {
           font-family: 'Evolventa', sans-serif;
           font-weight: 700;
@@ -225,7 +260,7 @@ export const TaskPage: React.FC = () => {
           height: 0;
           overflow: hidden;
           border-radius: 20px;
-          background: linear-gradient(135deg, #8B7355 0%, #C4A586 100%);
+          background: linear-gradient(135deg, ${theme.primaryColor} 0%, ${theme.buttonColor} 100%);
           box-shadow: 0 10px 40px rgba(61, 25, 3, 0.2);
         }
         .video-container iframe,
@@ -262,6 +297,17 @@ export const TaskPage: React.FC = () => {
         .play-button:hover {
           transform: scale(1.1);
           background: rgba(255, 255, 255, 0.2);
+        }
+        .module-badge {
+          display: inline-block;
+          padding: 6px 16px;
+          background: ${theme.primaryColor};
+          color: white;
+          border-radius: 20px;
+          font-family: 'Evolventa', sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          margin-bottom: 16px;
         }
         @media (max-width: 768px) {
           .desktop-header { display: none !important; }
@@ -494,7 +540,7 @@ export const TaskPage: React.FC = () => {
 
       <main style={{
         width: '100%',
-        background: 'linear-gradient(180deg, #F5E6D3 0%, #FDF6EE 60%, #FFFFFF 100%)',
+        background: `linear-gradient(180deg, ${theme.gradientFrom} 0%, ${theme.gradientTo} 60%, #FFFFFF 100%)`,
         paddingTop: 140,
         paddingBottom: 80,
         flex: 1,
@@ -505,7 +551,7 @@ export const TaskPage: React.FC = () => {
             fontWeight: 300,
             fontSize: 14,
             lineHeight: '21px',
-            color: '#4DB8B0',
+            color: theme.primaryColor,
             marginBottom: 12,
           }}>
             <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Главная</span>
@@ -515,12 +561,17 @@ export const TaskPage: React.FC = () => {
             <span>{task.subtitle}</span>
           </div>
 
+          {/* Badge модуля */}
+          <div className="module-badge">
+            {task.subtitle}
+          </div>
+
           <h1 style={{
             fontFamily: 'Evolventa, sans-serif',
             fontWeight: 400,
             fontSize: 'clamp(28px, 4vw, 40px)',
             lineHeight: 1.2,
-            color: '#3D1903',
+            color: theme.secondaryColor,
             margin: '0 0 16px',
           }}>
             {task.title}
@@ -531,7 +582,7 @@ export const TaskPage: React.FC = () => {
             fontWeight: 300,
             fontSize: 16,
             lineHeight: 1.5,
-            color: '#3D1903',
+            color: theme.secondaryColor,
             maxWidth: 700,
             marginBottom: 40,
           }}>
@@ -543,7 +594,7 @@ export const TaskPage: React.FC = () => {
             fontWeight: 400,
             fontSize: 24,
             lineHeight: 1.2,
-            color: '#3D1903',
+            color: theme.secondaryColor,
             marginBottom: 24,
           }}>
             Что ты поймёшь в этом модуле
@@ -600,7 +651,7 @@ export const TaskPage: React.FC = () => {
             <button 
               onClick={() => navigate(`/module/${slug}`)} 
               style={{
-                background: '#4DB8B0',
+                background: theme.buttonColor,
                 color: '#fff',
                 border: 'none',
                 borderRadius: '50px',
@@ -610,8 +661,8 @@ export const TaskPage: React.FC = () => {
                 cursor: 'pointer',
                 transition: 'background 0.2s',
               }}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#3DA8A0')}
-              onMouseOut={(e) => (e.currentTarget.style.background = '#4DB8B0')}
+              onMouseOver={(e) => (e.currentTarget.style.background = theme.buttonHoverColor)}
+              onMouseOut={(e) => (e.currentTarget.style.background = theme.buttonColor)}
             >
               Вернуться к модулю
             </button>

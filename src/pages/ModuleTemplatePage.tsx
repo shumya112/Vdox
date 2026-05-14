@@ -147,7 +147,7 @@ export const ModuleTemplatePage: React.FC = () => {
         .nav-pill:hover { opacity: 0.9; }
 
         .task-item {
-          background: rgba(255, 255, 255, 0.7);
+          background: rgba(255, 255, 255, 0.9);
           border-radius: 12px;
           padding: 20px 24px;
           display: flex;
@@ -155,6 +155,7 @@ export const ModuleTemplatePage: React.FC = () => {
           justify-content: space-between;
           margin-bottom: 16px;
           transition: transform 0.2s, box-shadow 0.2s;
+          border-left: 4px solid ${module.color};
         }
 
         .task-item:hover {
@@ -182,7 +183,7 @@ export const ModuleTemplatePage: React.FC = () => {
           font-size: 14px;
           line-height: 18px;
           text-decoration: none;
-          background: #4DB8B0;
+          background: ${module.color};
           border: none;
           color: #FFFFFF;
           cursor: pointer;
@@ -191,7 +192,19 @@ export const ModuleTemplatePage: React.FC = () => {
         }
 
         .task-btn:hover {
-          background: #3DA8A0;
+          filter: brightness(0.9);
+        }
+
+        .module-badge {
+          display: inline-block;
+          padding: 6px 16px;
+          background: ${module.color};
+          color: white;
+          border-radius: 20px;
+          font-family: 'Evolventa', sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          margin-bottom: 16px;
         }
 
         @media (max-width: 768px) {
@@ -475,7 +488,7 @@ export const ModuleTemplatePage: React.FC = () => {
       <main
         style={{
           width: '100%',
-          background: `linear-gradient(180deg, #F5E6D3 0%, #FDF6EE 60%, #FFFFFF 100%)`,
+          background: `linear-gradient(180deg, ${module.color}15 0%, #FFFFFF 100%)`,
           position: 'relative',
           minHeight: '70vh',
           paddingTop: '140px',
@@ -483,7 +496,7 @@ export const ModuleTemplatePage: React.FC = () => {
           flex: 1,
         }}
       >
-        {/* Background Image */}
+        {/* Background Image — ДИНАМИЧЕСКАЯ! */}
         {module.backgroundImage && (
           <div
             style={{
@@ -492,12 +505,13 @@ export const ModuleTemplatePage: React.FC = () => {
               right: 0,
               width: '100%',
               height: '100%',
-              backgroundImage: `url('/Frame 274 лаванда.png')`,
+              backgroundImage: `url('${module.backgroundImage}')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center right',
               backgroundRepeat: 'no-repeat',
-              opacity: 0.6,
+              opacity: 0.15,
               pointerEvents: 'none',
+              zIndex: 0,
             }}
           />
         )}
@@ -517,18 +531,25 @@ export const ModuleTemplatePage: React.FC = () => {
             fontWeight: 300,
             fontSize: '14px',
             lineHeight: '21px',
-            color: '#4DB8B0',
+            color: module.color,
             marginBottom: '12px',
           }}>
             <span
               onClick={() => navigate('/')}
-              style={{ cursor: 'pointer', color: '#4DB8B0' }}
+              style={{ cursor: 'pointer', color: module.color }}
             >
               Главная
             </span>
             {' • '}
             <span>{module.number}</span>
           </div>
+
+          {/* Module Badge */}
+          {!module.isLocked && (
+            <div className="module-badge">
+              {module.number}
+            </div>
+          )}
 
           {/* Title */}
           <h1 style={{
@@ -583,7 +604,7 @@ export const ModuleTemplatePage: React.FC = () => {
             <button
               onClick={() => navigate('/')}
               style={{
-                background: '#4DB8B0',
+                background: module.color,
                 color: '#fff',
                 border: 'none',
                 borderRadius: '50px',
@@ -593,8 +614,8 @@ export const ModuleTemplatePage: React.FC = () => {
                 cursor: 'pointer',
                 transition: 'background 0.2s',
               }}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#3DA8A0')}
-              onMouseOut={(e) => (e.currentTarget.style.background = '#4DB8B0')}
+              onMouseOver={(e) => (e.currentTarget.style.filter = 'brightness(0.9)')}
+              onMouseOut={(e) => (e.currentTarget.style.filter = 'brightness(1)')}
             >
               Вернуться к симптомам
             </button>
