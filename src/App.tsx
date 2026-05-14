@@ -5,7 +5,7 @@ import { FirstFlowerPage } from './pages/FirstFlowerPage';
 import { MainScreenWithModules } from './pages/MainScreenWithModules';
 import { TestPage } from './pages/TestPage';
 import { ResultPage } from './pages/ResultPage';
-import { DevaluationModulePage } from './pages/DevaluationModulePage';
+import { DevaluationModulePage } from './pages/DevaluationModulePage'; // ← Импорт игры
 import { ModuleTemplatePage } from './pages/ModuleTemplatePage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -80,6 +80,7 @@ function App() {
           {/* Динамический роут для модулей */}
           <Route path="/module/:slug" element={<ModuleTemplatePage />} />
           <Route path="/module/:slug/task/:taskId" element={<TaskPage />} />
+          <Route path="/module/:slug/scenario-game" element={<DevaluationModulePage />} />
           
           {/* Остальные роуты через хэш-навигацию */}
           <Route path="*" element={
