@@ -562,7 +562,15 @@ export const ModuleTemplatePage: React.FC = () => {
                 <span className="task-title">{task.title}</span>
                 <button 
                   className="task-btn"
-                  onClick={() => navigate(`/module/${module.slug}/task/first-meeting`)}  // ← Измени это
+                  onClick={() => {
+                    if (task.link === 'in-development') {
+                      alert('В разработке');
+                    } else if (task.link === 'card-game') {
+                      navigate('/devaluation');
+                    } else {
+                      navigate(`/module/${module.slug}/task/${task.link}`);
+                    }
+                  }}
                 >
                   Перейти к заданию
                 </button>
