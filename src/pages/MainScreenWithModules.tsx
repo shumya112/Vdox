@@ -875,7 +875,7 @@ export const MainScreenWithModules = () => {
             {modulesData.map((module) => (
               <div 
                 className={`symptom-card ${module.isLocked ? 'locked' : ''}`} 
-                key={module.id}
+                key={module.slug}
               >
                 {module.isLocked && <LockIcon />}
                 <p className="symptom-label">{module.number}</p>
