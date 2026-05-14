@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getModuleBySlug } from '../data/modulesData';
 
-// Навигация
 const navItems = [
   { label: 'О курсе', href: '#about' },
   { label: 'Симптомы', href: '#symptoms' },
@@ -10,7 +9,6 @@ const navItems = [
   { label: 'Специалисты', href: '#specialists' },
 ];
 
-// Данные для заданий
 const taskData: { [key: string]: {
   title: string;
   subtitle: string;
@@ -39,11 +37,7 @@ const taskData: { [key: string]: {
         text: 'В конце модуля заполнишь трекер и увидишь свой прогресс.',
       },
     ],
-    // ВАРИАНТ 1: Если загрузишь на YouTube/Vimeo (рекомендую!)
-    videoUrl: 'https://www.youtube.com/embed/VIDEO_ID',
-    
-    // ВАРИАНТ 2: Если будешь использовать локальное видео (после сжатия)
-    // videoUrl: '/videos/first-meeting.mp4',
+    videoUrl: 'https://rutube.ru/play/embed/2b3bcfe832b9af660f579b67a02e6000/?p=4XENKIBpo_AHv7kaM6wvkw',
   },
   'inner-critic': {
     title: 'Суд над внутренним критиком',
@@ -75,7 +69,6 @@ export const TaskPage: React.FC = () => {
   const module = slug ? getModuleBySlug(slug) : null;
   const task = taskId ? taskData[taskId] : null;
 
-  // Handle in-development tasks
   if (taskId === 'in-development') {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Evolventa, sans-serif' }}>
@@ -84,7 +77,6 @@ export const TaskPage: React.FC = () => {
     );
   }
 
-  // Header scroll
   useEffect(() => {
     const handleScroll = () => setHeaderFixed(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
@@ -92,7 +84,6 @@ export const TaskPage: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Mobile menu
   useEffect(() => {
     if (mobileMenuOpen) {
       const scrollY = window.scrollY;
@@ -140,6 +131,10 @@ export const TaskPage: React.FC = () => {
       </div>
     );
   }
+
+  const isYouTube = task.videoUrl?.includes('youtube') || task.videoUrl?.includes('youtu.be');
+  const isVimeo = task.videoUrl?.includes('vimeo');
+  const isRutube = task.videoUrl?.includes('rutube');
 
   return (
     <div style={styles.pageWrapper}>
@@ -196,9 +191,7 @@ export const TaskPage: React.FC = () => {
           cursor: pointer;
           transition: opacity 0.2s;
         }
-        .nav-pill:hover {
-          opacity: 0.9;
-        }
+        .nav-pill:hover { opacity: 0.9; }
         .info-card {
           background: #FFFFFF;
           border-radius: 12px;
@@ -207,9 +200,7 @@ export const TaskPage: React.FC = () => {
           min-width: 280px;
           transition: transform 0.2s;
         }
-        .info-card:hover {
-          transform: translateY(-4px);
-        }
+        .info-card:hover { transform: translateY(-4px); }
         .info-card-title {
           font-family: 'Evolventa', sans-serif;
           font-weight: 700;
@@ -225,19 +216,20 @@ export const TaskPage: React.FC = () => {
           line-height: 1.5;
           color: #3D1903;
         }
-        .video-wrapper {
+        .video-container {
           position: relative;
-          width: '100%';
+          width: 100%;
           max-width: 900px;
           margin: 40px auto 0;
-          border-radius: 20px;
+          padding-bottom: 56.25%;
+          height: 0;
           overflow: hidden;
+          border-radius: 20px;
           background: linear-gradient(135deg, #8B7355 0%, #C4A586 100%);
-          aspect-ratio: 16/9;
           box-shadow: 0 10px 40px rgba(61, 25, 3, 0.2);
         }
-        .video-wrapper iframe,
-        .video-wrapper video {
+        .video-container iframe,
+        .video-container video {
           position: absolute;
           top: 0;
           left: 0;
@@ -262,8 +254,8 @@ export const TaskPage: React.FC = () => {
           border: 3px solid rgba(255, 255, 255, 0.9);
           border-radius: 50%;
           display: flex;
-          alignItems: center;
-          justifyContent: center;
+          align-items: center;
+          justify-content: center;
           transition: transform 0.3s, background 0.3s;
           background: rgba(255, 255, 255, 0.1);
         }
@@ -276,19 +268,12 @@ export const TaskPage: React.FC = () => {
           .footer-section { display: none !important; }
           .mobile-header { display: flex !important; }
           .mobile-footer { display: block !important; }
-          .info-cards-wrapper {
-            flex-direction: column !important;
-          }
-          .info-card {
-            width: 100% !important;
-          }
-          .video-wrapper {
-            border-radius: 12px;
-          }
+          .info-cards-wrapper { flex-direction: column !important; }
+          .info-card { width: 100% !important; }
+          .video-container { border-radius: 12px; }
         }
       `}</style>
 
-      {/* DESKTOP HEADER */}
       <header className="desktop-header" style={{
         position: 'fixed',
         top: headerFixed ? '0' : '20px',
@@ -345,7 +330,6 @@ export const TaskPage: React.FC = () => {
         </div>
       </header>
 
-      {/* MOBILE HEADER */}
       <header className="mobile-header" style={{
         display: 'none',
         position: 'fixed',
@@ -385,7 +369,6 @@ export const TaskPage: React.FC = () => {
         </button>
       </header>
 
-      {/* MOBILE MENU OVERLAY */}
       {mobileMenuOpen && (
         <div style={{
           display: 'flex',
@@ -509,7 +492,6 @@ export const TaskPage: React.FC = () => {
         </div>
       )}
 
-      {/* MAIN CONTENT */}
       <main style={{
         width: '100%',
         background: 'linear-gradient(180deg, #F5E6D3 0%, #FDF6EE 60%, #FFFFFF 100%)',
@@ -517,12 +499,7 @@ export const TaskPage: React.FC = () => {
         paddingBottom: 80,
         flex: 1,
       }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: '0 24px',
-        }}>
-          {/* Breadcrumb */}
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
           <div style={{
             fontFamily: 'Evolventa, sans-serif',
             fontWeight: 300,
@@ -531,24 +508,13 @@ export const TaskPage: React.FC = () => {
             color: '#4DB8B0',
             marginBottom: 12,
           }}>
-            <span 
-              onClick={() => navigate('/')} 
-              style={{ cursor: 'pointer' }}
-            >
-              Главная
-            </span>
+            <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Главная</span>
             {' • '}
-            <span 
-              onClick={() => navigate(`/module/${slug}`)} 
-              style={{ cursor: 'pointer' }}
-            >
-              {module.number}
-            </span>
+            <span onClick={() => navigate(`/module/${slug}`)} style={{ cursor: 'pointer' }}>{module.number}</span>
             {' • '}
             <span>{task.subtitle}</span>
           </div>
 
-          {/* Title */}
           <h1 style={{
             fontFamily: 'Evolventa, sans-serif',
             fontWeight: 400,
@@ -560,7 +526,6 @@ export const TaskPage: React.FC = () => {
             {task.title}
           </h1>
 
-          {/* Description */}
           <p style={{
             fontFamily: 'Evolventa, sans-serif',
             fontWeight: 300,
@@ -573,7 +538,6 @@ export const TaskPage: React.FC = () => {
             {task.description}
           </p>
 
-          {/* Section Title */}
           <h2 style={{
             fontFamily: 'Evolventa, sans-serif',
             fontWeight: 400,
@@ -585,7 +549,6 @@ export const TaskPage: React.FC = () => {
             Что ты поймёшь в этом модуле
           </h2>
 
-          {/* Cards */}
           <div className="info-cards-wrapper" style={{
             display: 'flex',
             gap: 16,
@@ -600,43 +563,39 @@ export const TaskPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Video Section */}
-          <div className="video-wrapper">
-            {task.videoUrl && task.videoUrl.includes('youtube') ? (
-              // YouTube embed
-              <iframe
-                src={task.videoUrl}
-                title="Module Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : task.videoUrl && task.videoUrl.includes('vimeo') ? (
-              // Vimeo embed
-              <iframe
-                src={task.videoUrl}
-                title="Module Video"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-              />
-            ) : task.videoUrl ? (
-              // Local video file
-              <video controls preload="metadata" poster="/video-poster.jpg">
-                <source src={task.videoUrl} type="video/mp4" />
-                Ваш браузер не поддерживает видео.
-              </video>
-            ) : (
-              // Placeholder без видео
-              <div className="video-placeholder">
-                <div className="play-button">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                </div>
-              </div>
-            )}
-          </div>
+          {task.videoUrl && (
+            <div className="video-container">
+              {isYouTube ? (
+                <iframe
+                  src={task.videoUrl}
+                  title="Module Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : isVimeo ? (
+                <iframe
+                  src={task.videoUrl}
+                  title="Module Video"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : isRutube ? (
+                <iframe
+                  src={task.videoUrl}
+                  title="Module Video"
+                  frameBorder="0"
+                  allow="clipboard-write; autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <video controls preload="metadata" poster="/video-poster.jpg">
+                  <source src={task.videoUrl} type="video/mp4" />
+                  Ваш браузер не поддерживает видео.
+                </video>
+              )}
+            </div>
+          )}
 
-          {/* Back Button */}
           <div style={{ marginTop: 40 }}>
             <button 
               onClick={() => navigate(`/module/${slug}`)} 
@@ -660,7 +619,6 @@ export const TaskPage: React.FC = () => {
         </div>
       </main>
 
-      {/* DESKTOP FOOTER */}
       <footer className="footer-section" style={{
         width: '100%',
         background: '#3D1903',
@@ -710,7 +668,6 @@ export const TaskPage: React.FC = () => {
         </div>
       </footer>
 
-      {/* MOBILE FOOTER */}
       <footer className="mobile-footer" style={{
         display: 'none',
         width: 'calc(100% - 50px)',
