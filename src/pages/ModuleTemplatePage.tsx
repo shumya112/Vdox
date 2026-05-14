@@ -566,7 +566,7 @@ export const ModuleTemplatePage: React.FC = () => {
                     if (task.link === 'in-development') {
                       alert('В разработке');
                     } else if (task.link === 'card-game') {
-                      navigate('/devaluation');
+                      window.location.hash = '#devaluation';
                     } else {
                       navigate(`/module/${module.slug}/task/${task.link}`);
                     }
