@@ -24,10 +24,10 @@ export const modulesData: ModuleData[] = [
     backgroundImage: '/lavender.png',
     isLocked: false,
     tasks: [
-      { title: 'Первая встреча', link: '#' },
-      { title: 'Суд над внутренним критиком', link: '#' },
-      { title: 'Карточная игра «Сценарии»', link: '#' },
-      { title: 'Все самое нужное для дальнейшей жизни', link: '#' },
+      { title: 'Первая встреча', link: 'first-meeting' },
+      { title: 'Суд над внутренним критиком', link: 'in-development' },
+      { title: 'Карточная игра «Сценарии»', link: 'card-game' },
+      { title: 'Все самое нужное для дальнейшей жизни', link: 'in-development' },
     ],
   },
   {
@@ -39,10 +39,10 @@ export const modulesData: ModuleData[] = [
     backgroundImage: '/Frame 274 лаванда.png',
     isLocked: false,
     tasks: [
-      { title: 'Первая встреча', link: '#' },
-      { title: 'Суд над внутренним критиком', link: '#' },
-      { title: 'Карточная игра «Сценарии»', link: '#' },
-      { title: 'Все самое нужное для дальнейшей жизни', link: '#' },
+      { title: 'Первая встреча', link: 'first-meeting' },
+      { title: 'Суд над внутренним критиком', link: 'in-development' },
+      { title: 'Карточная игра «Сценарии»', link: 'card-game' },
+      { title: 'Все самое нужное для дальнейшей жизни', link: 'in-development' },
     ],
   },
   {

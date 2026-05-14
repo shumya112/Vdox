@@ -75,6 +75,15 @@ export const TaskPage: React.FC = () => {
   const module = slug ? getModuleBySlug(slug) : null;
   const task = taskId ? taskData[taskId] : null;
 
+  // Handle in-development tasks
+  if (taskId === 'in-development') {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Evolventa, sans-serif' }}>
+        <p>В разработке</p>
+      </div>
+    );
+  }
+
   // Header scroll
   useEffect(() => {
     const handleScroll = () => setHeaderFixed(window.scrollY > 20);
